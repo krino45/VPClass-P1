@@ -1,13 +1,16 @@
-interface INotifyer {
+using System;
+using System.Collections.Generic;
+
+public interface INotifyer {
     public void Notify(decimal balance);
-};
+}
 
 public class Account {
     private decimal _balance;
     private List<INotifyer> _notifyers;
 
     public Account(){
-        _balance = 0.0;
+        _balance = 0.0M;
         _notifyers = new List<INotifyer>();
     }
 
@@ -28,10 +31,10 @@ public class Account {
     }
     private void Notification(){
         foreach(INotifyer element in _notifyers){
-            _notifyers.Notify(_balance)
+            element.Notify(_balance);
         }
     }
-};
+}
 
 class SMSLowBalanceNotifyer : INotifyer {
 
@@ -63,14 +66,24 @@ class EMailBalanceChangedNotifyer : INotifyer {
             Console.WriteLine($"Sending a notification via EMailBalanceChangedNotifyer to {_email}. Balance: {balance}. ");
     }
 
-};
+}
 
-Account U1 = new Account(20);
-SMSLowBalanceNotifyer n1 = SMSLowBalanceNotifyer('+79296125531', 10);
-EMailBalanceChangedNotifyer n2 = EMailBalanceChangedNotifyer('darkbark21@yahoo.com');
+class Program
+{
+    static void Main()
+    { 
+        Console.Clear();
+        Account U1 = new Account(20);
+        SMSLowBalanceNotifyer n1 = new SMSLowBalanceNotifyer("+79296125531", 10);
+        EMailBalanceChangedNotifyer n2 = new EMailBalanceChangedNotifyer("darkbark21@yahoo.com");
 
-Console.WriteLine($"Current balance is: {U1.Balance}");
+        U1.AddNotifyer(n1);
+        U1.AddNotifyer(n2);
+        Console.WriteLine($"Current balance is: {U1.Balance}");
 
-for (int i = 0; i < 5; i++){
-    U1.ChangeBalance(U1.Balance() - 3 * i);
+        for (int i = 0; i < 5; i++) {
+            U1.ChangeBalance(U1.Balance - 3);
+        }
+        Console.ReadKey(true);
+    }
 }
