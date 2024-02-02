@@ -1,3 +1,3 @@
-# Visual programming (Part I) homework 
+# Visual programming Part I
 
-I have to upload it like this ig idk
+All of my V.P. homework from the fourth semester of studying at SibSUTIS, uploaded into a private repository as per the requirements.
