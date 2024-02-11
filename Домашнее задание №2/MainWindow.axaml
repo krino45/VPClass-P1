@@ -1,0 +1,123 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+        x:Class="Домашнее_задание__2.MainWindow"
+        Title="Colors"
+        Icon="D:\3Semester\Visual Programming I\Домашнее задание №2\HD_transparent_picture.png"
+        Width="600" Height="400"
+        MinWidth="300" MinHeight="300">
+    
+    <Grid ColumnDefinitions="33*,0.1*,66*">
+        <StackPanel VerticalAlignment="Top"
+                    Grid.Column="0">
+            <Button BorderBrush="Black"
+                    BorderThickness="2,4,2,2"
+                    CornerRadius="0"
+                    VerticalAlignment="Top"
+                    HorizontalAlignment="Stretch"
+                    Click="Button_Click"
+                    HorizontalContentAlignment="Center"
+                    Background="Khaki"
+                    Content="Khaki"/>
+            <Button BorderBrush="Black"
+                    BorderThickness="2"
+                    CornerRadius="0"
+                    VerticalAlignment="Top"
+                    HorizontalAlignment="Stretch"
+                    Click="Button_Click"
+                    HorizontalContentAlignment="Center"
+                    Background="Red"
+                    Content="Red"/>
+            <Button BorderBrush="Black"
+                    BorderThickness="2"
+                    CornerRadius="0"
+                    VerticalAlignment="Top"
+                    HorizontalAlignment="Stretch"
+                    Click="Button_Click"
+                    HorizontalContentAlignment="Center"
+                    Background="MediumVioletRed"
+                    Content="MediumVioletRed"/>
+            <Button BorderBrush="Black"
+                    BorderThickness="2"
+                    CornerRadius="0"
+                    VerticalAlignment="Top"
+                    HorizontalAlignment="Stretch"
+                    Click="Button_Click"
+                    HorizontalContentAlignment="Center"
+                    Background="Bisque"
+                    Content="Bisque"/>
+                
+
+            <Button BorderBrush="Black"
+                    BorderThickness="2"
+                    CornerRadius="0"
+                    VerticalAlignment="Top"
+                    HorizontalAlignment="Stretch"
+                    Click="Button_Click"
+                    HorizontalContentAlignment="Center"
+                    Background="LemonChiffon"
+                    Content="LemonChiffon"/>
+                
+
+            <Button BorderBrush="Black"
+                    BorderThickness="2"
+                    CornerRadius="0"
+                    VerticalAlignment="Top"
+                    HorizontalAlignment="Stretch"
+                    Click="Button_Click"
+                    HorizontalContentAlignment="Center"
+                    Background="PowderBlue"
+                    Content="PowderBlue"/>
+                
+
+            <Button BorderBrush="Black"
+                    BorderThickness="2"
+                    CornerRadius="0"
+                    VerticalAlignment="Top"
+                    HorizontalAlignment="Stretch"
+                    Click="Button_Click"
+                    HorizontalContentAlignment="Center"
+                    Background="MintCream"
+                    Content="MintCream"/>
+                
+
+            <Button BorderBrush="Black"
+                    BorderThickness="2"
+                    CornerRadius="0"
+                    VerticalAlignment="Top"
+                    HorizontalAlignment="Stretch"
+                    Click="Button_Click"
+                    HorizontalContentAlignment="Center"
+                    Background="Maroon"
+                    Content="Maroon"/>
+                
+
+            <Button BorderBrush="Black"
+                    BorderThickness="2"
+                    CornerRadius="0"
+                    VerticalAlignment="Top"
+                    HorizontalAlignment="Stretch"
+                    Click="Button_Click"
+                    HorizontalContentAlignment="Center"
+                    Background="RosyBrown"
+                    Content="RosyBrown"/>
+                
+
+            <Button BorderBrush="Black"
+                    BorderThickness="2,2,2,4"
+                    CornerRadius="0"
+                    VerticalAlignment="Top"
+                    HorizontalAlignment="Stretch"
+                    Click="Button_Click"
+                    HorizontalContentAlignment="Center"
+                    Background="LightPink"
+                    Content="LightPink"/>
+        </StackPanel>
+
+        <GridSplitter Grid.Column="1" Background="Black"/>
+        <Rectangle Grid.Column="2" Name="filler" Fill="Khaki" Stretch="Fill"></Rectangle>
+        
+    </Grid>
+</Window>
