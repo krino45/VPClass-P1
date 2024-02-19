@@ -1,0 +1,292 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:dc="clr-namespace:dz3"
+        mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+        x:Class="dz3.MainWindow"
+        Width="400" Height="600"
+        x:DataType="dc:DataContextMainWindow"
+        Title="Калькулятор"
+        CanResize="False"
+        Icon="D:\3Semester\Visual Programming I\Домашнее задание №2\HD_transparent_picture.png">
+        
+    <Design.DataContext>
+        <dc:DataContextMainWindow/>
+    </Design.DataContext>        
+    <Grid ColumnDefinitions="0.5*,1*,1*,1*,1*,0.5*" RowDefinitions="0.2*,1.5*,1*,0.8*,0.8*,0.8*,1*,1*,1*,1*,0.2*" ShowGridLines="False">
+        <Border     Grid.ColumnSpan="4" 
+                    Grid.Column="1"
+                    Grid.Row="1"
+                    Grid.RowSpan="2"
+                    BorderBrush="AliceBlue"
+                    BorderThickness="5"
+                    Background="AliceBlue">
+            <Grid ColumnDefinitions="1*,1*,1*" RowDefinitions="1.5*,1*" ShowGridLines="false">
+                <Border Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="3" BorderThickness="3,3,3,0" BorderBrush="Gray">
+                <TextBlock  HorizontalAlignment="Stretch"
+                            VerticalAlignment="Center"
+                            TextAlignment="Center"
+                            Text="{Binding OutputScreen}"/>
+                </Border>
+                <Border Grid.Row="1" Grid.Column="0" BorderThickness="3" BorderBrush="Gray">
+                <TextBlock  HorizontalAlignment="Stretch"
+                            VerticalAlignment="Center"
+                            TextAlignment="Center"
+                            Text="{Binding OutputScreenLHS}"/>
+                </Border>
+                <Border Grid.Row="1" Grid.Column="1" BorderThickness="3" BorderBrush="Gray">
+                <TextBlock  HorizontalAlignment="Stretch"
+                            VerticalAlignment="Center"
+                            TextAlignment="Center"
+                            Text="{Binding OutputScreenOPR}"/>
+                </Border>
+                <Border Grid.Row="1" Grid.Column="2" BorderThickness="3" BorderBrush="Gray">
+                <TextBlock  
+                            HorizontalAlignment="Stretch"
+                            VerticalAlignment="Center"
+                            TextAlignment="Center"
+                            Text="{Binding OutputScreenRHS}"/>
+                </Border>
+            </Grid>
+        </Border>
+        <Button     Grid.Column="1"
+                    Grid.Row="3"
+                    Content="CLEAR"
+                    HorizontalContentAlignment="Center"
+                    VerticalContentAlignment="Center"
+                    HorizontalAlignment="Stretch"
+                    VerticalAlignment="Stretch"
+                    Command="{Binding ExecuteCommandOperation}" CommandParameter="28"/>
+        <Button     Grid.Column="2"
+                    Grid.Row="3"
+                    Content="FLOOR"
+                    HorizontalContentAlignment="Center"
+                    VerticalContentAlignment="Center"
+                    HorizontalAlignment="Stretch"
+                    VerticalAlignment="Stretch"
+                    Command="{Binding ExecuteCommandOperation}" CommandParameter="24"/>
+        <Button     Grid.Column="3"
+                    Grid.Row="3"
+                    Content="CEILING"
+                    HorizontalContentAlignment="Center"
+                    VerticalContentAlignment="Center"
+                    HorizontalAlignment="Stretch"
+                    VerticalAlignment="Stretch"
+                    Command="{Binding ExecuteCommandOperation}" CommandParameter="23"/>
+        <Button     Grid.Column="4"
+                    Grid.Row="3"
+                    Content="DELETE"
+                    HorizontalContentAlignment="Center"
+                    VerticalContentAlignment="Center"
+                    HorizontalAlignment="Stretch"
+                    VerticalAlignment="Stretch"
+                    Command="{Binding ExecuteCommandOperation}" CommandParameter="27"/>
+        <Button     Grid.Column="1"
+                    Grid.Row="4"
+                    Content="mod"
+                    HorizontalContentAlignment="Center"
+                    VerticalContentAlignment="Center"
+                    HorizontalAlignment="Stretch"
+                    VerticalAlignment="Stretch"
+                    Command="{Binding ExecuteCommandOperation}" CommandParameter="16"/>
+        <Button     Grid.Column="2"
+                    Grid.Row="4"
+                    Content="x^y"
+                    HorizontalContentAlignment="Center"
+                    VerticalContentAlignment="Center"
+                    HorizontalAlignment="Stretch"
+                    VerticalAlignment="Stretch"
+                    Command="{Binding ExecuteCommandOperation}" CommandParameter="17"/>
+        <Button     Grid.Column="3"
+                    Grid.Row="4"
+                    Content="x!"
+                    HorizontalContentAlignment="Center"
+                    VerticalContentAlignment="Center"
+                    HorizontalAlignment="Stretch"
+                    VerticalAlignment="Stretch"
+                    Command="{Binding ExecuteCommandOperation}" CommandParameter="18"/>
+        <Button     Grid.Column="4"
+                    Grid.Row="4"
+                    Content="tg(x)"
+                    HorizontalContentAlignment="Center"
+                    VerticalContentAlignment="Center"
+                    HorizontalAlignment="Stretch"
+                    VerticalAlignment="Stretch"
+                    Command="{Binding ExecuteCommandOperation}" CommandParameter="21"/>
+        <Button     Grid.Column="1"
+                    Grid.Row="5"
+                    Content="lg(x)"
+                    HorizontalContentAlignment="Center"
+                    VerticalContentAlignment="Center"
+                    HorizontalAlignment="Stretch"
+                    VerticalAlignment="Stretch"
+                    Command="{Binding ExecuteCommandOperation}" CommandParameter="25"/>
+        <Button     Grid.Column="2"
+                    Grid.Row="5"
+                    Content="ln(x)"
+                    HorizontalContentAlignment="Center"
+                    VerticalContentAlignment="Center"
+                    HorizontalAlignment="Stretch"
+                    VerticalAlignment="Stretch"
+                    Command="{Binding ExecuteCommandOperation}" CommandParameter="26"/>    
+        <Button     Grid.Column="3"
+                    Grid.Row="5"
+                    Content="sin(x)"
+                    HorizontalContentAlignment="Center"
+                    VerticalContentAlignment="Center"
+                    HorizontalAlignment="Stretch"
+                    VerticalAlignment="Stretch"
+                    Command="{Binding ExecuteCommandOperation}" CommandParameter="19"/>    
+        <Button     Grid.Column="4"
+                    Grid.Row="5"
+                    Content="cos(x)"
+                    HorizontalContentAlignment="Center"
+                    VerticalContentAlignment="Center"
+                    HorizontalAlignment="Stretch"
+                    VerticalAlignment="Stretch"
+                    Command="{Binding ExecuteCommandOperation}" CommandParameter="20"/>            
+        <Button     Grid.Column="4"
+                    Grid.Row="6"
+                    Content="/"
+                    HorizontalContentAlignment="Center"
+                    VerticalContentAlignment="Center"
+                    HorizontalAlignment="Stretch"
+                    VerticalAlignment="Stretch"
+                    Command="{Binding ExecuteCommandOperation}" CommandParameter="15"/>
+        <Button     Grid.Column="4"
+                    Grid.Row="7"
+                    Content="*"
+                    HorizontalContentAlignment="Center"
+                    VerticalContentAlignment="Center"
+                    HorizontalAlignment="Stretch"
+                    VerticalAlignment="Stretch"
+                    Command="{Binding ExecuteCommandOperation}" CommandParameter="14"/>
+        <Button     Grid.Column="4"
+                    Grid.Row="8"
+                    Content="+"
+                    HorizontalContentAlignment="Center"
+                    VerticalContentAlignment="Center"
+                    HorizontalAlignment="Stretch"
+                    VerticalAlignment="Stretch"
+                    Command="{Binding ExecuteCommandOperation}" CommandParameter="12"/>
+
+        <Grid       Grid.Column="4"
+                    Grid.Row="9"
+                    RowDefinitions = "1*,1*">
+                <Button
+                    Grid.Row="0"
+                    Content="-"
+                    HorizontalContentAlignment="Center"
+                    VerticalContentAlignment="Center"
+                    HorizontalAlignment="Stretch"
+                    VerticalAlignment="Stretch"
+                    Command="{Binding ExecuteCommandOperation}" CommandParameter="13"/>
+                <Button
+                    Grid.Row="1"
+                    Content="NEG"
+                    HorizontalContentAlignment="Center"
+                    VerticalContentAlignment="Center"
+                    HorizontalAlignment="Stretch"
+                    VerticalAlignment="Stretch"
+                    Command="{Binding ExecuteCommandOperation}" CommandParameter="29"/>                    
+        </Grid>
+        <Button     Grid.Column="3"
+                    Grid.Row="9"
+                    Content="="
+                    HorizontalContentAlignment="Center"
+                    VerticalContentAlignment="Center"
+                    HorizontalAlignment="Stretch"
+                    VerticalAlignment="Stretch"
+                    Command="{Binding ExecuteCommandOperation}" CommandParameter="22"/>
+        <Button     Grid.Column="1"
+                    Grid.Row="9"
+                    Content=","
+                    HorizontalContentAlignment="Center"
+                    VerticalContentAlignment="Center"
+                    HorizontalAlignment="Stretch"
+                    VerticalAlignment="Stretch"
+                    Command="{Binding ExecuteCommandNumber}" CommandParameter="11"/>
+        <Button     Grid.Column="1"
+                    Grid.Row="6"
+                    Content="1"
+                    HorizontalContentAlignment="Center"
+                    VerticalContentAlignment="Center"
+                    HorizontalAlignment="Stretch"
+                    VerticalAlignment="Stretch"
+                    Command="{Binding ExecuteCommandNumber}" CommandParameter="1"/>
+        <Button     Grid.Column="2"
+                    Grid.Row="6"
+                    Content="2"
+                    HorizontalContentAlignment="Center"
+                    VerticalContentAlignment="Center"
+                    HorizontalAlignment="Stretch"
+                    VerticalAlignment="Stretch"
+                    Command="{Binding ExecuteCommandNumber}" CommandParameter="2"/>
+        <Button     Grid.Column="3"
+                    Grid.Row="6"
+                    Content="3"
+                    HorizontalContentAlignment="Center"
+                    VerticalContentAlignment="Center"
+                    HorizontalAlignment="Stretch"
+                    VerticalAlignment="Stretch"
+                    Command="{Binding ExecuteCommandNumber}" CommandParameter="3"/>
+        <Button     Grid.Column="1"
+                    Grid.Row="7"
+                    Content="4"
+                    HorizontalContentAlignment="Center"
+                    VerticalContentAlignment="Center"
+                    HorizontalAlignment="Stretch"
+                    VerticalAlignment="Stretch"
+                    Command="{Binding ExecuteCommandNumber}" CommandParameter="4"/>
+        <Button     Grid.Column="2"
+                    Grid.Row="7"
+                    Content="5"
+                    HorizontalContentAlignment="Center"
+                    VerticalContentAlignment="Center"
+                    HorizontalAlignment="Stretch"
+                    VerticalAlignment="Stretch"
+                    Command="{Binding ExecuteCommandNumber}" CommandParameter="5"/>
+        <Button     Grid.Column="3"
+                    Grid.Row="7"
+                    Content="6"
+                    HorizontalContentAlignment="Center"
+                    VerticalContentAlignment="Center"
+                    HorizontalAlignment="Stretch"
+                    VerticalAlignment="Stretch"
+                    Command="{Binding ExecuteCommandNumber}" CommandParameter="6"/>
+        <Button     Grid.Column="1"
+                    Grid.Row="8"
+                    Content="7"
+                    HorizontalContentAlignment="Center"
+                    VerticalContentAlignment="Center"
+                    HorizontalAlignment="Stretch"
+                    VerticalAlignment="Stretch"
+                    Command="{Binding ExecuteCommandNumber}" CommandParameter="7"/>
+        <Button     Grid.Column="2"
+                    Grid.Row="8"
+                    Content="8"
+                    HorizontalContentAlignment="Center"
+                    VerticalContentAlignment="Center"
+                    HorizontalAlignment="Stretch"
+                    VerticalAlignment="Stretch"
+                    Command="{Binding ExecuteCommandNumber}" CommandParameter="8"/>
+        <Button     Grid.Column="3"
+                    Grid.Row="8"
+                    Content="9"
+                    HorizontalContentAlignment="Center"
+                    VerticalContentAlignment="Center"
+                    HorizontalAlignment="Stretch"
+                    VerticalAlignment="Stretch"
+                    Command="{Binding ExecuteCommandNumber}" CommandParameter="9"/>    
+        <Button     Grid.Column="2"
+                    Grid.Row="9"
+                    Content="0"
+                    HorizontalContentAlignment="Center"
+                    VerticalContentAlignment="Center"
+                    HorizontalAlignment="Stretch"
+                    VerticalAlignment="Stretch"
+                    Command="{Binding ExecuteCommandNumber}" CommandParameter="0"/>                                                                                                                                               
+    </Grid>
+    
+</Window>
