@@ -3,13 +3,15 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:dc="clr-namespace:dz3"
-        mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+        mc:Ignorable="d" d:DesignWidth="400" d:DesignHeight="600"
         x:Class="dz3.MainWindow"
         Width="400" Height="600"
         x:DataType="dc:DataContextMainWindow"
         Title="Калькулятор"
         CanResize="False"
-        Icon="D:\3Semester\Visual Programming I\Домашнее задание №2\HD_transparent_picture.png">
+        Icon="D:\3Semester\Visual Programming I\Домашнее задание №3\resources\4x.png"
+        Background="#231e22"
+        Foreground="White">
         
     <Design.DataContext>
         <dc:DataContextMainWindow/>
@@ -19,32 +21,42 @@
                     Grid.Column="1"
                     Grid.Row="1"
                     Grid.RowSpan="2"
-                    BorderBrush="AliceBlue"
+                    BorderBrush="#2f2128"
                     BorderThickness="5"
-                    Background="AliceBlue">
+                    Background="#412f3d">
             <Grid ColumnDefinitions="1*,1*,1*" RowDefinitions="1.5*,1*" ShowGridLines="false">
-                <Border Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="3" BorderThickness="3,3,3,0" BorderBrush="Gray">
+                <Border Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="3" BorderThickness="3,3,3,0" BorderBrush="#191919">
+
                 <TextBlock  HorizontalAlignment="Stretch"
                             VerticalAlignment="Center"
-                            TextAlignment="Center"
+                            TextAlignment="Right"
+                            FontFamily="{StaticResource NunitoFont}"
+                            FontSize="24"
                             Text="{Binding OutputScreen}"/>
                 </Border>
-                <Border Grid.Row="1" Grid.Column="0" BorderThickness="3" BorderBrush="Gray">
+                
+                <Border Grid.Row="1" Grid.Column="0" BorderThickness="3,3,0,3" BorderBrush="#191919">
                 <TextBlock  HorizontalAlignment="Stretch"
                             VerticalAlignment="Center"
                             TextAlignment="Center"
+                            FontFamily="{StaticResource NunitoFont}"
+                    FontSize="16"
                             Text="{Binding OutputScreenLHS}"/>
                 </Border>
-                <Border Grid.Row="1" Grid.Column="1" BorderThickness="3" BorderBrush="Gray">
+                <Border Grid.Row="1" Grid.Column="1" BorderThickness="3" BorderBrush="#191919">
                 <TextBlock  HorizontalAlignment="Stretch"
                             VerticalAlignment="Center"
+                            FontFamily="{StaticResource NunitoFont}"
+                    FontSize="16"
                             TextAlignment="Center"
                             Text="{Binding OutputScreenOPR}"/>
                 </Border>
-                <Border Grid.Row="1" Grid.Column="2" BorderThickness="3" BorderBrush="Gray">
+                <Border Grid.Row="1" Grid.Column="2" BorderThickness="0,3,3,3" BorderBrush="#191919">
                 <TextBlock  
                             HorizontalAlignment="Stretch"
                             VerticalAlignment="Center"
+                            FontFamily="{StaticResource NunitoFont}"
+                    FontSize="16"
                             TextAlignment="Center"
                             Text="{Binding OutputScreenRHS}"/>
                 </Border>
@@ -57,6 +69,10 @@
                     VerticalContentAlignment="Center"
                     HorizontalAlignment="Stretch"
                     VerticalAlignment="Stretch"
+                    FontFamily="{StaticResource NunitoFont}"
+                    FontSize="16"
+                    Background="#50272a"
+                    Foreground="#ffdddd"
                     Command="{Binding ExecuteCommandOperation}" CommandParameter="28"/>
         <Button     Grid.Column="2"
                     Grid.Row="3"
@@ -65,6 +81,10 @@
                     VerticalContentAlignment="Center"
                     HorizontalAlignment="Stretch"
                     VerticalAlignment="Stretch"
+                    FontFamily="{StaticResource NunitoFont}"
+                    FontSize="16"
+                    Background="#30272a"
+                    Foreground="#ccccff"
                     Command="{Binding ExecuteCommandOperation}" CommandParameter="24"/>
         <Button     Grid.Column="3"
                     Grid.Row="3"
@@ -73,6 +93,10 @@
                     VerticalContentAlignment="Center"
                     HorizontalAlignment="Stretch"
                     VerticalAlignment="Stretch"
+                    FontFamily="{StaticResource NunitoFont}"
+                    FontSize="16"
+                    Background="#30272a"
+                    Foreground="#ccccff"
                     Command="{Binding ExecuteCommandOperation}" CommandParameter="23"/>
         <Button     Grid.Column="4"
                     Grid.Row="3"
@@ -81,6 +105,10 @@
                     VerticalContentAlignment="Center"
                     HorizontalAlignment="Stretch"
                     VerticalAlignment="Stretch"
+                    FontFamily="{StaticResource NunitoFont}"
+                    FontSize="16"
+                    Background="#50475a"
+                    Foreground="#edffee"
                     Command="{Binding ExecuteCommandOperation}" CommandParameter="27"/>
         <Button     Grid.Column="1"
                     Grid.Row="4"
@@ -89,6 +117,10 @@
                     VerticalContentAlignment="Center"
                     HorizontalAlignment="Stretch"
                     VerticalAlignment="Stretch"
+                    FontFamily="{StaticResource NunitoFont}"
+                    FontSize="16"
+                    Background="#30272a"
+                    Foreground="#ccccff"
                     Command="{Binding ExecuteCommandOperation}" CommandParameter="16"/>
         <Button     Grid.Column="2"
                     Grid.Row="4"
@@ -97,6 +129,10 @@
                     VerticalContentAlignment="Center"
                     HorizontalAlignment="Stretch"
                     VerticalAlignment="Stretch"
+                    FontFamily="{StaticResource NunitoFont}"
+                    FontSize="16"
+                    Background="#30272a"
+                    Foreground="#ccccff"
                     Command="{Binding ExecuteCommandOperation}" CommandParameter="17"/>
         <Button     Grid.Column="3"
                     Grid.Row="4"
@@ -105,6 +141,10 @@
                     VerticalContentAlignment="Center"
                     HorizontalAlignment="Stretch"
                     VerticalAlignment="Stretch"
+                    FontFamily="{StaticResource NunitoFont}"
+                    FontSize="16"
+                    Background="#30272a"
+                    Foreground="#ccccff"
                     Command="{Binding ExecuteCommandOperation}" CommandParameter="18"/>
         <Button     Grid.Column="4"
                     Grid.Row="4"
@@ -113,6 +153,10 @@
                     VerticalContentAlignment="Center"
                     HorizontalAlignment="Stretch"
                     VerticalAlignment="Stretch"
+                    FontFamily="{StaticResource NunitoFont}"
+                    FontSize="16"
+                    Background="#30272a"
+                    Foreground="#ccccff"
                     Command="{Binding ExecuteCommandOperation}" CommandParameter="21"/>
         <Button     Grid.Column="1"
                     Grid.Row="5"
@@ -121,6 +165,10 @@
                     VerticalContentAlignment="Center"
                     HorizontalAlignment="Stretch"
                     VerticalAlignment="Stretch"
+                    FontFamily="{StaticResource NunitoFont}"
+                    FontSize="16"
+                    Background="#30272a"
+                    Foreground="#ccccff"
                     Command="{Binding ExecuteCommandOperation}" CommandParameter="25"/>
         <Button     Grid.Column="2"
                     Grid.Row="5"
@@ -129,6 +177,10 @@
                     VerticalContentAlignment="Center"
                     HorizontalAlignment="Stretch"
                     VerticalAlignment="Stretch"
+                    FontFamily="{StaticResource NunitoFont}"
+                    FontSize="16"
+                    Background="#30272a"
+                    Foreground="#ccccff"
                     Command="{Binding ExecuteCommandOperation}" CommandParameter="26"/>    
         <Button     Grid.Column="3"
                     Grid.Row="5"
@@ -137,6 +189,10 @@
                     VerticalContentAlignment="Center"
                     HorizontalAlignment="Stretch"
                     VerticalAlignment="Stretch"
+                    FontFamily="{StaticResource NunitoFont}"
+                    FontSize="16"
+                    Background="#30272a"
+                    Foreground="#ccccff"
                     Command="{Binding ExecuteCommandOperation}" CommandParameter="19"/>    
         <Button     Grid.Column="4"
                     Grid.Row="5"
@@ -145,6 +201,10 @@
                     VerticalContentAlignment="Center"
                     HorizontalAlignment="Stretch"
                     VerticalAlignment="Stretch"
+                    FontFamily="{StaticResource NunitoFont}"
+                    FontSize="16"
+                    Background="#30272a"
+                    Foreground="#ccccff"
                     Command="{Binding ExecuteCommandOperation}" CommandParameter="20"/>            
         <Button     Grid.Column="4"
                     Grid.Row="6"
@@ -153,6 +213,10 @@
                     VerticalContentAlignment="Center"
                     HorizontalAlignment="Stretch"
                     VerticalAlignment="Stretch"
+                    FontFamily="{StaticResource NunitoFont}"
+                    FontSize="16"
+                    Background="#382f34"
+                    Foreground="#ccccff"
                     Command="{Binding ExecuteCommandOperation}" CommandParameter="15"/>
         <Button     Grid.Column="4"
                     Grid.Row="7"
@@ -161,6 +225,10 @@
                     VerticalContentAlignment="Center"
                     HorizontalAlignment="Stretch"
                     VerticalAlignment="Stretch"
+                    FontFamily="{StaticResource NunitoFont}"
+                    FontSize="16"
+                    Background="#382f34"
+                    Foreground="#ccccff"
                     Command="{Binding ExecuteCommandOperation}" CommandParameter="14"/>
         <Button     Grid.Column="4"
                     Grid.Row="8"
@@ -169,6 +237,10 @@
                     VerticalContentAlignment="Center"
                     HorizontalAlignment="Stretch"
                     VerticalAlignment="Stretch"
+                    FontFamily="{StaticResource NunitoFont}"
+                    FontSize="16"
+                    Background="#382f34"
+                    Foreground="#ccccff"
                     Command="{Binding ExecuteCommandOperation}" CommandParameter="12"/>
 
         <Grid       Grid.Column="4"
@@ -181,6 +253,10 @@
                     VerticalContentAlignment="Center"
                     HorizontalAlignment="Stretch"
                     VerticalAlignment="Stretch"
+                    FontFamily="{StaticResource NunitoFont}"
+                    FontSize="16"
+                    Background="#382f34"
+                    Foreground="#ccccff"
                     Command="{Binding ExecuteCommandOperation}" CommandParameter="13"/>
                 <Button
                     Grid.Row="1"
@@ -189,6 +265,10 @@
                     VerticalContentAlignment="Center"
                     HorizontalAlignment="Stretch"
                     VerticalAlignment="Stretch"
+                    FontFamily="{StaticResource NunitoFont}"
+                    FontSize="16"
+                    Background="#382f34"
+                    Foreground="#ccccff"
                     Command="{Binding ExecuteCommandOperation}" CommandParameter="29"/>                    
         </Grid>
         <Button     Grid.Column="3"
@@ -198,6 +278,10 @@
                     VerticalContentAlignment="Center"
                     HorizontalAlignment="Stretch"
                     VerticalAlignment="Stretch"
+                    FontFamily="{StaticResource NunitoFont}"
+                    FontSize="16"
+                    Background="#40413d"
+                    Foreground="#ccccff"
                     Command="{Binding ExecuteCommandOperation}" CommandParameter="22"/>
         <Button     Grid.Column="1"
                     Grid.Row="9"
@@ -206,6 +290,10 @@
                     VerticalContentAlignment="Center"
                     HorizontalAlignment="Stretch"
                     VerticalAlignment="Stretch"
+                    FontFamily="{StaticResource NunitoFont}"
+                    FontSize="16"
+                    Background="#30282c"
+                    Foreground="#ccccff"
                     Command="{Binding ExecuteCommandNumber}" CommandParameter="11"/>
         <Button     Grid.Column="1"
                     Grid.Row="6"
@@ -214,6 +302,10 @@
                     VerticalContentAlignment="Center"
                     HorizontalAlignment="Stretch"
                     VerticalAlignment="Stretch"
+                    FontFamily="{StaticResource NunitoFont}"
+                    FontSize="16"
+                    Background="#40383d"
+                    Foreground="#eeeeff"
                     Command="{Binding ExecuteCommandNumber}" CommandParameter="1"/>
         <Button     Grid.Column="2"
                     Grid.Row="6"
@@ -222,6 +314,10 @@
                     VerticalContentAlignment="Center"
                     HorizontalAlignment="Stretch"
                     VerticalAlignment="Stretch"
+                    FontFamily="{StaticResource NunitoFont}"
+                    FontSize="16"
+                    Background="#40383d"
+                    Foreground="#eeeeff"
                     Command="{Binding ExecuteCommandNumber}" CommandParameter="2"/>
         <Button     Grid.Column="3"
                     Grid.Row="6"
@@ -230,6 +326,10 @@
                     VerticalContentAlignment="Center"
                     HorizontalAlignment="Stretch"
                     VerticalAlignment="Stretch"
+                    FontFamily="{StaticResource NunitoFont}"
+                    FontSize="16"
+                    Background="#40383d"
+                    Foreground="#eeeeff"
                     Command="{Binding ExecuteCommandNumber}" CommandParameter="3"/>
         <Button     Grid.Column="1"
                     Grid.Row="7"
@@ -238,6 +338,10 @@
                     VerticalContentAlignment="Center"
                     HorizontalAlignment="Stretch"
                     VerticalAlignment="Stretch"
+                    FontFamily="{StaticResource NunitoFont}"
+                    FontSize="16"
+                    Background="#40383d"
+                    Foreground="#eeeeff"
                     Command="{Binding ExecuteCommandNumber}" CommandParameter="4"/>
         <Button     Grid.Column="2"
                     Grid.Row="7"
@@ -246,6 +350,10 @@
                     VerticalContentAlignment="Center"
                     HorizontalAlignment="Stretch"
                     VerticalAlignment="Stretch"
+                    FontFamily="{StaticResource NunitoFont}"
+                    FontSize="16"
+                    Background="#40383d"
+                    Foreground="#eeeeff"
                     Command="{Binding ExecuteCommandNumber}" CommandParameter="5"/>
         <Button     Grid.Column="3"
                     Grid.Row="7"
@@ -254,6 +362,10 @@
                     VerticalContentAlignment="Center"
                     HorizontalAlignment="Stretch"
                     VerticalAlignment="Stretch"
+                    FontFamily="{StaticResource NunitoFont}"
+                    FontSize="16"
+                    Background="#40383d"
+                    Foreground="#eeeeff"
                     Command="{Binding ExecuteCommandNumber}" CommandParameter="6"/>
         <Button     Grid.Column="1"
                     Grid.Row="8"
@@ -262,6 +374,10 @@
                     VerticalContentAlignment="Center"
                     HorizontalAlignment="Stretch"
                     VerticalAlignment="Stretch"
+                    FontFamily="{StaticResource NunitoFont}"
+                    FontSize="16"
+                    Background="#40383d"
+                    Foreground="#eeeeff"
                     Command="{Binding ExecuteCommandNumber}" CommandParameter="7"/>
         <Button     Grid.Column="2"
                     Grid.Row="8"
@@ -270,6 +386,10 @@
                     VerticalContentAlignment="Center"
                     HorizontalAlignment="Stretch"
                     VerticalAlignment="Stretch"
+                    FontFamily="{StaticResource NunitoFont}"
+                    FontSize="16"
+                    Background="#40383d"
+                    Foreground="#eeeeff"
                     Command="{Binding ExecuteCommandNumber}" CommandParameter="8"/>
         <Button     Grid.Column="3"
                     Grid.Row="8"
@@ -278,6 +398,10 @@
                     VerticalContentAlignment="Center"
                     HorizontalAlignment="Stretch"
                     VerticalAlignment="Stretch"
+                    FontFamily="{StaticResource NunitoFont}"
+                    FontSize="16"
+                    Background="#40383d"
+                    Foreground="#eeeeff"
                     Command="{Binding ExecuteCommandNumber}" CommandParameter="9"/>    
         <Button     Grid.Column="2"
                     Grid.Row="9"
@@ -286,6 +410,10 @@
                     VerticalContentAlignment="Center"
                     HorizontalAlignment="Stretch"
                     VerticalAlignment="Stretch"
+                    FontFamily="{StaticResource NunitoFont}"
+                    FontSize="16"
+                    Background="#40383d"
+                    Foreground="#eeeeff"
                     Command="{Binding ExecuteCommandNumber}" CommandParameter="0"/>                                                                                                                                               
     </Grid>
     

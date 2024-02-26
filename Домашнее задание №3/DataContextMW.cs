@@ -331,12 +331,12 @@ public class DataContextMainWindow : INotifyPropertyChanged
             {
                 case (int)Operation.factorial:
                     OnPropertyChanged(nameof(OutputScreenLHS));
-                    NumberHardSet = Factorial(_number2);
+                    NumberHardSet = Factorial(_number);
                     dotFlag = false;
                     counter = 10;                    
                     break;
                 case (int)Operation.sine:
-                    NumberHardSet = Math.Sin(_number2);
+                    NumberHardSet = Math.Sin(_number);
                     if(NumberOfDecimals(Number) != 0)
                     {
                         dotFlag = true;
@@ -344,7 +344,7 @@ public class DataContextMainWindow : INotifyPropertyChanged
                     }                    
                     break;
                 case (int)Operation.cosine:
-                    NumberHardSet = Math.Cos(_number2);
+                    NumberHardSet = Math.Cos(_number);
                     if(NumberOfDecimals(Number) != 0)
                     {
                         dotFlag = true;
@@ -352,7 +352,7 @@ public class DataContextMainWindow : INotifyPropertyChanged
                     }
                     break;
                 case (int)Operation.tangent:
-                    NumberHardSet = Math.Tan(_number2);
+                    NumberHardSet = Math.Tan(_number);
                     if(NumberOfDecimals(Number) != 0)
                     {
                         dotFlag = true;
@@ -360,17 +360,17 @@ public class DataContextMainWindow : INotifyPropertyChanged
                     }
                     break;
                 case (int)Operation.ceiling:
-                    NumberHardSet = Math.Ceiling(_number2);
+                    NumberHardSet = Math.Ceiling(_number);
                     dotFlag = false;
                     counter = 10;
                     break;
                 case (int)Operation.floor:
-                    NumberHardSet = Math.Floor(_number2);
+                    NumberHardSet = Math.Floor(_number);
                     dotFlag = false;
                     counter = 10;
                     break;
                 case (int)Operation.lg:
-                    NumberHardSet = Math.Log10(_number2);
+                    NumberHardSet = Math.Log10(_number);
                     if(NumberOfDecimals(Number) != 0)
                     {
                         dotFlag = true;
@@ -378,7 +378,7 @@ public class DataContextMainWindow : INotifyPropertyChanged
                     }
                     break;
                 case (int)Operation.ln:
-                    NumberHardSet = Math.Log(_number2);
+                    NumberHardSet = Math.Log(_number);
                     if(NumberOfDecimals(Number) != 0)
                     {
                         dotFlag = true;
@@ -489,7 +489,7 @@ public class DataContextMainWindow : INotifyPropertyChanged
     protected bool SetField(ref double field, double value, [CallerMemberName] string? propertyName = null)
     {
         if (errflag) return false;
-        if (value == double.NaN || value == double.NegativeInfinity)
+        if (double.IsNaN(value) || value == double.NegativeInfinity)
         {
             errflag = true;
             ErrType = "Invalid lg/ln input.Positive numbers only.";
