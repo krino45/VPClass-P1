@@ -1,0 +1,35 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ExplorerAtHome"
+		mc:Ignorable="d" d:DesignWidth="500" d:DesignHeight="600"
+        x:Class="ExplorerAtHome.MainWindow"
+		x:DataType="local:DataContextForExplorer"
+		Icon="resources\icon.png"
+        Title="File Viewer">
+	<Window.DataContext>
+		<local:DataContextForExplorer/>
+	</Window.DataContext>
+	<ListBox  	ItemsSource="{Binding FileCollection}"
+				Name="listbox">
+		<ListBox.ItemTemplate>
+			<DataTemplate>
+				<Grid ColumnDefinitions="50,10,*">
+					<Image		Grid.Column="0"
+								Width="50"
+								Source="{Binding ImagePath}"/>
+					<TextBlock	Grid.Column="2"
+								VerticalAlignment="Center"
+								FontSize="16"
+								Text="{Binding FilePath}"/>
+				</Grid>
+			</DataTemplate>
+		</ListBox.ItemTemplate>
+		<ListBox.Styles>
+			<Style Selector="ListBoxItem:selected /template/ ContentPresenter">
+				<Setter Property="Background" Value="#C990F5"/>
+			</Style>
+		</ListBox.Styles>
+	</ListBox>
+</Window>
