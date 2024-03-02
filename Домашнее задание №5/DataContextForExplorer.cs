@@ -12,28 +12,11 @@ using System.Threading.Tasks;
 
 namespace ExplorerAtHome
 {   
-    public class FileItem
-    {
-        private string _filePath;
-        private Bitmap _iconPath;
-        private string? _fullfilePath;
-
-        public FileItem(string filePath, string iconPath, string? fullfilePath = "")
-        {
-            _filePath = filePath;
-            _iconPath = new Bitmap(iconPath);
-            _fullfilePath = fullfilePath;
-        }
-
-        public string FilePath { get => _filePath;}
-        public Bitmap IconPath { get => _iconPath;}
-        public string? FullfilePath { get => _fullfilePath;}
-
-    }
 
     internal class DataContextForExplorer : INotifyPropertyChanged
     {
-        private string _currFile = @"D:\3Semester\Visual Programming I\Домашнее задание №5\resources\placeholder.jpg";
+        private FileSystemWatcher? _watcher;
+        private string _currFile = @"placeholder.jpg";
         private string _currDir;
         private string _regularFolderPNGPath = @".\resources\regular_folder.png";
         private string _filePNGPath = @".\resources\file.png";
@@ -75,18 +58,54 @@ namespace ExplorerAtHome
             _fileCollection = new ObservableCollection<FileItem>();
             _listBox = new ListBox();
             FileCollectionItit();
+            _watcherInit();
         }
         private async void FileCollectionItit()
         {
             FileCollection = await GetDirsAndFiles(_currDir);
         }
+        private void _watcherInit()
+        {
+            _watcher = new FileSystemWatcher(_currDir);
+            _watcher.IncludeSubdirectories = false;
+            _watcher.Changed += (sender, e) => { Watcher_Init(); };
+            _watcher.Created += (sender, e) => { Watcher_Init(); };
+            _watcher.Deleted += (sender, e) => { Watcher_Init(); };
+            _watcher.Renamed += (sender, e) => { Watcher_Init(); };
+            _watcher.EnableRaisingEvents = true;
+        }
+
+        private void Watcher_Init()
+        {
+            Task.Run(async () =>
+            {
+                FileCollection = await GetDirsAndFiles(_currDir);
+                OnPropertyChanged(nameof(FileCollection));
+            });
+        }
+        private void ChangeWatcherDirectory()
+        {   
+            if(_watcher != null)
+            {
+                _watcher.Dispose();
+            }
+            _watcher = new FileSystemWatcher(_currDir);
+            _watcher.IncludeSubdirectories = false;
+            _watcher.Changed += (sender, e) => { Watcher_Init(); };
+            _watcher.Created += (sender, e) => { Watcher_Init(); };
+            _watcher.Deleted += (sender, e) => { Watcher_Init(); };
+            _watcher.Renamed += (sender, e) => { Watcher_Init(); };
+            _watcher.EnableRaisingEvents = true;
+        }
+
+
         public void AttachListBox(ListBox listBox)
         {
             _listBox = listBox;
             _listBox.DoubleTapped += ListBox_DoubleTapped;
             _listBox.Tapped += ListBox_Tapped;
         }
-        
+
 
         public async void ListBox_Tapped(object? sender, RoutedEventArgs args)
         {
@@ -106,11 +125,11 @@ namespace ExplorerAtHome
                     }
                 }
             }
-        }    
-        
+        }
 
         public async void ListBox_DoubleTapped(object? sender, RoutedEventArgs args)
-        {   
+        {
+            string bufferDir = _currDir;
             if (_listBox.SelectedItem is FileItem selectedItem)
             {
                 if (selectedItem.FilePath == "..")
@@ -163,8 +182,10 @@ namespace ExplorerAtHome
             }
 
             OnPropertyChanged(nameof(FileCollection));
-            _listBox.InvalidateVisual();
-
+            if(bufferDir == _currDir)
+            {
+                ChangeWatcherDirectory();
+            }
         }
 
 
