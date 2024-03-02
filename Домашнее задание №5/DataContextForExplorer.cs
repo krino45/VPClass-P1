@@ -8,6 +8,7 @@ using System;
 using Avalonia.Controls;
 using Avalonia.Interactivity;
 using Avalonia.Media.Imaging;
+using System.Threading.Tasks;
 
 namespace ExplorerAtHome
 {   
@@ -38,7 +39,7 @@ namespace ExplorerAtHome
         private string _filePNGPath = @".\resources\file.png";
         private string _parentFolderPNGPath = @".\resources\arrow-up-bold.png";
         private string _discPNGPath = @".\resources\drive.png";
-        private Bitmap _image = new Bitmap(@".\resources\placeholder.jpg");
+        private Bitmap? _image = new Bitmap(@".\resources\placeholder.jpg");
         private ListBox _listBox;
         private ObservableCollection<FileItem> _fileCollection;
         public static readonly List<string> ImageExtensions = new List<string> { ".jpg", ".jpeg", ".jpe", ".bmp", ".gif", ".png", ".tiff" };
@@ -57,7 +58,7 @@ namespace ExplorerAtHome
             get => _fileCollection;
             set => SetField(ref _fileCollection, value);
         }
-        public Bitmap Image
+        public Bitmap? Image
         {
             get => _image;
             set => SetField(ref _image, value);
@@ -73,7 +74,11 @@ namespace ExplorerAtHome
             _currDir = Directory.GetCurrentDirectory();
             _fileCollection = new ObservableCollection<FileItem>();
             _listBox = new ListBox();
-            FileCollection = GetDirsAndFiles(_currDir); 
+            FileCollectionItit();
+        }
+        private async void FileCollectionItit()
+        {
+            FileCollection = await GetDirsAndFiles(_currDir);
         }
         public void AttachListBox(ListBox listBox)
         {
@@ -83,7 +88,7 @@ namespace ExplorerAtHome
         }
         
 
-        public void ListBox_Tapped(object? sender, RoutedEventArgs args)
+        public async void ListBox_Tapped(object? sender, RoutedEventArgs args)
         {
 
             if (_listBox.SelectedItem is FileItem selectedItem)
@@ -92,7 +97,7 @@ namespace ExplorerAtHome
                 {
                     try
                     {
-                        Image = new Bitmap(selectedItem.FullfilePath);
+                        Image = await Task.Run(() => new Bitmap(selectedItem.FullfilePath));
                         CurrentFile = selectedItem.FullfilePath;
                     }
                     catch (Exception ex)
@@ -104,7 +109,7 @@ namespace ExplorerAtHome
         }    
         
 
-        public void ListBox_DoubleTapped(object? sender, RoutedEventArgs args)
+        public async void ListBox_DoubleTapped(object? sender, RoutedEventArgs args)
         {   
             if (_listBox.SelectedItem is FileItem selectedItem)
             {
@@ -131,7 +136,7 @@ namespace ExplorerAtHome
                         {
                             _currDir = x.FullName;
                             // Console.WriteLine("in .. " + _currDir);
-                            FileCollection = GetDirsAndFiles(_currDir);
+                            FileCollection = await GetDirsAndFiles(_currDir);
                             // Console.WriteLine(_fileCollection[1].FilePath + " " + _fileCollection[1].IconPath);
                         }
                     }
@@ -145,13 +150,13 @@ namespace ExplorerAtHome
                 {
                     _currDir = _currDir + @"\" + selectedItem.FilePath;
                     // Console.WriteLine("in directory checkout: " + _currDir);
-                    FileCollection = GetDirsAndFiles(_currDir);
+                    FileCollection = await GetDirsAndFiles(_currDir);
                 }
                 else if (_currDir == "")
                 {
                     _currDir = selectedItem.FilePath;
                     // Console.WriteLine("in directory checkout top tevel: " + _currDir);
-                    FileCollection = GetDirsAndFiles(_currDir);
+                    FileCollection = await GetDirsAndFiles(_currDir);
                 }
                 // Console.WriteLine("after " + _currDir);
                 // Console.WriteLine($"Double Tapped on: {selectedItem.FilePath}");
@@ -163,14 +168,14 @@ namespace ExplorerAtHome
         }
 
 
-        private ObservableCollection<FileItem> GetDirsAndFiles(string dir)
+        private async Task<ObservableCollection<FileItem>> GetDirsAndFiles(string dir)
         {
             try
             {   
                 // Console.WriteLine("GetDirsAndFiles");
                 string[] returndir = [".."];
-                string[] dirs = Directory.GetDirectories(dir);
-                List<string> files = Directory.GetFiles(dir).ToList();
+                string[] dirs = await Task.Run(() => Directory.GetDirectories(dir));
+                List<string> files = await Task.Run(() => Directory.GetFiles(dir).ToList());
                 foreach (string file in files.ToList())
                 {
                     if (!ExtentionCheck(file))
@@ -207,8 +212,9 @@ namespace ExplorerAtHome
             }
             catch (Exception ex)
             {
-                Console.WriteLine($"Error: {ex.Message}");
-                return new ObservableCollection<FileItem>();
+                CurrentFile = ($"Error: {ex.Message}");
+                Image = null;
+                return new ObservableCollection<FileItem>(new FileItem[] { new FileItem("..", _parentFolderPNGPath, "Back") });
             }
         }
         public event PropertyChangedEventHandler? PropertyChanged;
