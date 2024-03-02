@@ -143,7 +143,7 @@ namespace ExplorerAtHome
             catch (Exception ex)
             {
                 Console.WriteLine($"Error: {ex.Message}");
-                return new ObservableCollection<FileItem>();
+                return new ObservableCollection<FileItem>(new FileItem[]{new FileItem("..",_parentFolderPNGPath)});
             }
         }
         public event PropertyChangedEventHandler? PropertyChanged;
