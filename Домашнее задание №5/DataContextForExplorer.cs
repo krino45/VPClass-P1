@@ -9,6 +9,7 @@ using Avalonia.Controls;
 using Avalonia.Interactivity;
 using Avalonia.Media.Imaging;
 using System.Threading.Tasks;
+using System.Threading;
 
 namespace ExplorerAtHome
 {   
@@ -62,7 +63,7 @@ namespace ExplorerAtHome
         }
         private async void FileCollectionItit()
         {
-            FileCollection = await GetDirsAndFiles(_currDir);
+            await GetDirsAndFiles(_currDir);
         }
         private void _watcherInit()
         {
@@ -79,7 +80,7 @@ namespace ExplorerAtHome
         {
             Task.Run(async () =>
             {
-                FileCollection = await GetDirsAndFiles(_currDir);
+                await GetDirsAndFiles(_currDir);
                 OnPropertyChanged(nameof(FileCollection));
             });
         }
@@ -109,27 +110,31 @@ namespace ExplorerAtHome
 
         public async void ListBox_Tapped(object? sender, RoutedEventArgs args)
         {
-
             if (_listBox.SelectedItem is FileItem selectedItem)
             {
                 if (ExtentionCheck(selectedItem.FilePath) && selectedItem.FullfilePath != null)
                 {
-                    try
-                    {
-                        Image = await Task.Run(() => new Bitmap(selectedItem.FullfilePath));
-                        CurrentFile = selectedItem.FullfilePath;
-                    }
-                    catch (Exception ex)
-                    {
-                        Console.WriteLine(ex.ToString());
-                    }
+                    await Task.Run(() => ImageHandler(selectedItem.FullfilePath));
                 }
+            }
+        }
+
+        public void ImageHandler(string filepath)
+        {
+            try
+            {
+                Image = new Bitmap(filepath);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
             }
         }
 
         public async void ListBox_DoubleTapped(object? sender, RoutedEventArgs args)
         {
             string bufferDir = _currDir;
+            bool safety_flag = true;
             if (_listBox.SelectedItem is FileItem selectedItem)
             {
                 if (selectedItem.FilePath == "..")
@@ -137,10 +142,11 @@ namespace ExplorerAtHome
                     try
                     {
                         DirectoryInfo? x = Directory.GetParent(_currDir);
-                        // Console.WriteLine("x is " + x);
+                        Console.WriteLine("x is " + x);
                         if (x == null)
                         {
                             _currDir = "";
+                            safety_flag = false;
                             ObservableCollection<string> temp = new ObservableCollection<string>(DriveInfo.GetDrives().Select(d => d.Name).ToList());
                             ObservableCollection<FileItem> temp2 = new ObservableCollection<FileItem>();
                             for(int i = 0; i < temp.Count; i++)
@@ -154,9 +160,9 @@ namespace ExplorerAtHome
                         else
                         {
                             _currDir = x.FullName;
-                            // Console.WriteLine("in .. " + _currDir);
-                            FileCollection = await GetDirsAndFiles(_currDir);
-                            // Console.WriteLine(_fileCollection[1].FilePath + " " + _fileCollection[1].IconPath);
+                            Console.WriteLine("in .. " + _currDir);
+                            await GetDirsAndFiles(_currDir);
+                            Console.WriteLine(_fileCollection[1].FilePath + " " + _fileCollection[1].IconPath);
                         }
                     }
                     catch (Exception ex)
@@ -168,32 +174,32 @@ namespace ExplorerAtHome
                 else if (_currDir != "" && Directory.Exists(_currDir + @"\" + selectedItem.FilePath))
                 {
                     _currDir = _currDir + @"\" + selectedItem.FilePath;
-                    // Console.WriteLine("in directory checkout: " + _currDir);
-                    FileCollection = await GetDirsAndFiles(_currDir);
+                    Console.WriteLine("in directory checkout: " + _currDir);
+                    await GetDirsAndFiles(_currDir);
                 }
                 else if (_currDir == "")
                 {
                     _currDir = selectedItem.FilePath;
-                    // Console.WriteLine("in directory checkout top tevel: " + _currDir);
-                    FileCollection = await GetDirsAndFiles(_currDir);
+                    Console.WriteLine("in directory checkout top tevel: " + _currDir);
+                    await GetDirsAndFiles(_currDir);
                 }
-                // Console.WriteLine("after " + _currDir);
-                // Console.WriteLine($"Double Tapped on: {selectedItem.FilePath}");
+                Console.WriteLine("after " + _currDir);
+                Console.WriteLine($"Double Tapped on: {selectedItem.FilePath}");
             }
-
-            OnPropertyChanged(nameof(FileCollection));
-            if(bufferDir == _currDir)
+            if(bufferDir != _currDir && safety_flag)
             {
                 ChangeWatcherDirectory();
+                OnPropertyChanged(nameof(FileCollection));
             }
+            
         }
 
 
-        private async Task<ObservableCollection<FileItem>> GetDirsAndFiles(string dir)
+        private async Task GetDirsAndFiles(string dir)
         {
             try
             {   
-                // Console.WriteLine("GetDirsAndFiles");
+                Console.WriteLine("GetDirsAndFiles");
                 string[] returndir = [".."];
                 string[] dirs = await Task.Run(() => Directory.GetDirectories(dir));
                 List<string> files = await Task.Run(() => Directory.GetFiles(dir).ToList());
@@ -222,20 +228,35 @@ namespace ExplorerAtHome
                     if (Directory.Exists(everything[i]))
                     {
                         result[i] = new FileItem(Path.GetRelativePath(_currDir, everything[i]), _regularFolderPNGPath, everything[i]);
+                        FileCollection = new ObservableCollection<FileItem>(result);
+                        await Task.Delay(10);
                     }
                     else if (File.Exists(everything[i]))
                     {
                         result[i] = new FileItem(Path.GetRelativePath(_currDir, everything[i]), _filePNGPath, everything[i]);
+                        FileCollection = new ObservableCollection<FileItem>(result);
+                        await Task.Delay(10);
                     }
-                    // Console.WriteLine("in getdirsandfiles: " + result[i].FilePath + " and " + result[i].IconPath);
+                    Console.WriteLine("in getdirsandfiles: " + result[i].FilePath + " and " + result[i].IconPath);
                 }
-                return new ObservableCollection<FileItem>(result);
+                FileCollection = new ObservableCollection<FileItem>(result);
+            }
+            catch (AggregateException ex)
+            {
+                if (ex.InnerException != null)
+                CurrentFile = ($"Error: {ex.InnerException.Message}");
+                Image = new Bitmap(@".\resources\placeholder.jpg");
+                _currDir = Directory.GetCurrentDirectory();
+                FileCollection = new ObservableCollection<FileItem>(new FileItem[] { new FileItem("..", _parentFolderPNGPath, "Back") });
             }
             catch (Exception ex)
             {
+                Console.WriteLine(ex.Message);
                 CurrentFile = ($"Error: {ex.Message}");
-                Image = null;
-                return new ObservableCollection<FileItem>(new FileItem[] { new FileItem("..", _parentFolderPNGPath, "Back") });
+                Image = new Bitmap(@".\resources\placeholder.jpg");
+                _currDir = Directory.GetCurrentDirectory();
+                FileCollection = new ObservableCollection<FileItem>(new FileItem[] { new FileItem("..", _parentFolderPNGPath, "Back") });
+
             }
         }
         public event PropertyChangedEventHandler? PropertyChanged;
@@ -248,7 +269,7 @@ namespace ExplorerAtHome
         protected bool SetField<T>(ref T field, T value, [CallerMemberName] string? propertyName = null)
         {
             if (EqualityComparer<T>.Default.Equals(field, value)) return false;
-            // Console.WriteLine("not false....");
+            Console.WriteLine("not false....");
             field = value;
             OnPropertyChanged(propertyName);
             return true;
