@@ -18,19 +18,16 @@ namespace WeatherApp
 
         public ForecastRequestHandler()
         {
-            if (File.Exists(_lastReqTime))
+            if (File.Exists(_JSON_weatherFileName))
             {
-                _unixSeconds = long.Parse(File.ReadAllText(_lastReqTime));
+                _unixSeconds = DateTimeOffset.FromFileTime(File.GetLastWriteTime(_JSON_weatherFileName).ToFileTime()).ToUnixTimeSeconds();
+                Console.WriteLine($"_unixSeconds filetime read: {_unixSeconds}");
+                Console.WriteLine($"rn: {DateTimeOffset.Now.ToUnixTimeSeconds()}");
             }
             else
             {
                 _unixSeconds = 0;
             }
-        }
-
-        private void unixSecondsSetter()
-        {
-            _unixSeconds = DateTimeOffset.Now.ToUnixTimeSeconds();
         }
 
         public async Task<string> HandleRequest(string? cityname = null, double lat = 999.9, double lon = 999.9)
@@ -89,19 +86,18 @@ namespace WeatherApp
                     }
                     else
                     {
-                        Console.WriteLine(forecast.ToString());
+                        //Console.WriteLine(forecast.ToString());7
                     }
                 }
-                unixSecondsSetter();
-                File.WriteAllText(_lastReqTime, _unixSeconds.ToString());
-                return "Geocode file creation success";
+                Console.WriteLine("Forecast file creation success");
+                return "Forecast file creation success";
             }
             else
             {
                 Console.WriteLine("No need for sending a Forecast request...");
                 Console.WriteLine($"_unixSeconds: {_unixSeconds}");
                 Forecast? forecast = await JSON_Handler.ReadJSONAsync<Forecast>(_JSON_weatherFileName);
-                Console.WriteLine(forecast.ToString());
+                //Console.WriteLine(forecast.ToString());
                 return $"Try again in {_requestFrequency - (DateTimeOffset.Now.ToUnixTimeSeconds() - _unixSeconds)} seconds";
             }
         }

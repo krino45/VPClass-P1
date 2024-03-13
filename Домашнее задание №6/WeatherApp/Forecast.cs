@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Text.Json.Serialization;
 
 namespace WeatherApp
 {
@@ -12,7 +13,7 @@ namespace WeatherApp
         public override string ToString()
         {
             string retvalue;
-            retvalue = "Forecast list: \n{";
+            retvalue = "Forecast list: \n{\n";
             foreach (WeatherForecast listelement in List)
             {
                 retvalue += listelement.ToString();
@@ -31,23 +32,24 @@ namespace WeatherApp
         public Wind Wind { get; set; } 
         public int Visibility { get; set; }
         public double Pop { get; set; } // probability of precipitation
-        public Rain Rain { get; set; } // rain volume
+        public Rain? Rain { get; set; } // rain volume
+        public Snow? Snow { get; set; } // snow volume
         //public Sys Sys { get; set; } // probably won't need this, can get it from the time
         public string DtTxt { get; set; }
 
         public override string ToString()
         {
             string retvalue;
-            retvalue = "[ DT: " + Dt.ToString() + "    Main: " + Main.ToString() + "\nList of Weather: \n{";
+            retvalue = "[ DT: " + Dt.ToString() + " (dt in days:" + DateTimeOffset.FromUnixTimeSeconds(Dt).DateTime.ToLocalTime().ToString()  +  ")    Main: " + Main.ToString() + "\nList of Weather: \n{\n";
             foreach (Weather listelement in Weather)
             {
                 retvalue = retvalue + listelement.ToString() + "\n";
             }
             retvalue = retvalue + "}\n" +
-                       "   Clouds: " + (Clouds?.ToString() ?? "N/A") + "\n" +
+                       "Clouds: " + (Clouds?.ToString() ?? "N/A") + "\n" +
                        "Wind: " + (Wind?.ToString() ?? "N/A") + "\n" +
-                       "Visibility: " + Visibility + "%\n" +
-                       "Probability of precipitation: " + Pop + "%\n" +
+                       "Visibility: " + Visibility + " meters\n" +
+                       "Probability of precipitation: " + Pop*100 + "%\n" +
                        "Rain: " + (Rain?.ToString() ?? "N/A") + "\n" +
                        "DtTxt: " + DtTxt + " ]\n";
 
@@ -59,8 +61,10 @@ namespace WeatherApp
     {
         public double Temp { get; set; }
         public double FeelsLike { get; set; }
-        //public double TempMin { get; set; }
-        //public double TempMax { get; set; }
+        [JsonPropertyName("temp_min")]
+        public double TempMin { get; set; }
+        [JsonPropertyName("temp_max")]
+        public double TempMax { get; set; }
         public int Pressure { get; set; }
         //public int SeaLevel { get; set; }
         //public int GrndLevel { get; set; }
@@ -81,11 +85,11 @@ namespace WeatherApp
         public int Id { get; set; }
         public string Main { get; set; } // "Clouds", "Clear", etc... 
         //public string Description { get; set; } // more specific, don;t need
-        //public string Icon { get; set; } // inbuilt parameter for icons, no need since its too difficult
+        public string Icon { get; set; } // inbuilt parameter for icons, no need since its too difficult
         public override string ToString()
         {
             string retvalue;
-            retvalue = "[ Id: " + Id.ToString() + "Main: " + Main + " ]";
+            retvalue = "[ Id: " + Id.ToString() + "    Main: " + Main + "    Icon: " + Icon.ToString() + " ]";
             return retvalue;
         }
     }
@@ -118,7 +122,20 @@ namespace WeatherApp
 
     public class Rain
     {
+        [JsonPropertyName("3h")]
         public double H3 { get; set; } // rain chance
+
+        public override string ToString()
+        {
+            string retvalue;
+            retvalue = "[ Chance of precipitation: " + H3.ToString() + "% ]";
+            return retvalue;
+        }
+    }
+    public class Snow
+    {
+        [JsonPropertyName("3h")]
+        public double H3 { get; set; } // snow chance
 
         public override string ToString()
         {
@@ -135,11 +152,11 @@ namespace WeatherApp
 
     public class City
     {
-        /*public int Id { get; set; }
+        //public int Id { get; set; }
         public string Name { get; set; }
-        public Coord Coord { get; set; }
-        public string Country { get; set; }
-        public int Population { get; set; } */
+        //public Coord Coord { get; set; }
+        //public string Country { get; set; }
+        //public int Population { get; set; }
         public int Timezone { get; set; } 
         public long Sunrise { get; set; }
         public long Sunset { get; set; }
@@ -147,7 +164,7 @@ namespace WeatherApp
         public override string ToString()
         {
             string retvalue;
-            retvalue = "[ Timezone: " + Timezone.ToString() + "Sunrize: " + Sunrise.ToString() + "Sunset: " + Sunset.ToString() + " ]";
+            retvalue = "[ Timezone: " + Timezone.ToString() + "Sunrise: " + Sunrise.ToString() + "(in local datetime: "  + DateTimeOffset.FromUnixTimeSeconds(Sunrise).LocalDateTime.ToString() + ")    Sunset: " + Sunset.ToString() + "(in local datetime: " + DateTimeOffset.FromUnixTimeSeconds(Sunset).LocalDateTime.ToString() + ") ]";
             return retvalue;
         }
     }

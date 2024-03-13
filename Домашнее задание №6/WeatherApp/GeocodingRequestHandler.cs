@@ -3,6 +3,7 @@ using RestSharp.Serializers.Json;
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Text.Json;
 using System.Threading.Tasks;
 
@@ -49,9 +50,19 @@ namespace WeatherApp
                     Console.WriteLine(ex.Message);
                 }
                 if (locations == null) throw new Exception("failed to read geocode.json in the request handler like a russian 4th grader ");
-                Location location = locations[0];
-                Console.WriteLine(location.ToString());
-                string filecityName = JsonNamingPolicy.CamelCase.ConvertName(location.Name);
+                string filecityName;
+                try
+                {
+                    Location location = locations.First();
+                    Console.WriteLine(location.ToString());
+                    filecityName = JsonNamingPolicy.CamelCase.ConvertName(location.Name);
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine(ex.Message);
+                    filecityName = "";
+                }
+                
                 if (filecityName == cityname)
                 {
                     Console.WriteLine("No need to update");
@@ -61,6 +72,7 @@ namespace WeatherApp
                 {
                     try
                     {
+                        File.Delete(_JSON_cityFileName);
                         await GeocodingRequest(cityname);
                     }
                     catch (Exception ex)
@@ -94,19 +106,20 @@ namespace WeatherApp
 
             if (response.IsSuccessStatusCode)
             {
-                await JSON_Handler.WriteJSONAsync(response.Content, _JSON_cityFileName);
-
+             
                 List<Location>? locations = JsonSerializer.Deserialize<List<Location>>(response.Content, serializerOptions);
                 Location location;
                 if (locations != null && locations.Count > 0)
                 {
+                    await JSON_Handler.WriteJSONAsync(response.Content, _JSON_cityFileName);
                     location = locations[0];
                     Console.WriteLine(location.ToString());
                     Console.WriteLine(location.Name + " lat: "  + location.Lat.ToString() + " lon: " + location.Lon.ToString());
                 }
                 else
                 {
-                    throw new Exception("Fetching failed :c");
+                    Console.WriteLine("Fetching failed :c");
+                    return "Bad fetch";
                 }
             }
             return "Geocode file creation success";

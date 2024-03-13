@@ -12,6 +12,10 @@
     <AvaloniaResource Include="resources\**" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Remove="resources\TitilliumWeb-SemiBold.ttf" />
+  </ItemGroup>
+
 
   <ItemGroup>
     <PackageReference Include="Avalonia" Version="11.0.6" />
@@ -26,6 +30,20 @@
 
 
   <ItemGroup>
+    <AvaloniaResource Update="resources\three-horizontal-lines-icon.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </AvaloniaResource>
+  </ItemGroup>
+
+
+  <ItemGroup>
+	  <Resource Include=".\files\**" />
+	  <Resource Include=".\resources\**" />
+  </ItemGroup>
+
+
+  <ItemGroup>
     <Folder Include="files\" />
   </ItemGroup>
+
 </Project>

@@ -7,4 +7,12 @@
     <Application.Styles>
         <FluentTheme />
     </Application.Styles>
+
+	<Application.Resources>
+		<FontFamily x:Key="TitilliumWeb">avares://resources/TitilliumWeb-SemiBold.ttf</FontFamily>
+	</Application.Resources>
+	<Application.Resources>
+		<FontFamily x:Key="TitilliumWeb-Black">avares://resources/TitilliumWeb-Black.ttf</FontFamily>
+	</Application.Resources>
+
 </Application>

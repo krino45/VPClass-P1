@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "WeatherApp": {
+      "commandName": "Project",
+      "workingDirectory": "D:\\3Semester\\Visual Programming I\\Домашнее задание №6\\WeatherApp"
+    }
+  }
+}

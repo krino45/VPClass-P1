@@ -2,17 +2,220 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        mc:Ignorable="d" d:DesignWidth="450" d:DesignHeight="800"
+		xmlns:local="clr-namespace:WeatherApp"
+        mc:Ignorable="d" d:DesignWidth="500" d:DesignHeight="850"
+		Width="500" Height="850" CanResize="False"
         x:Class="WeatherApp.MainWindow"
-        Title="WeatherApp">
-	<Grid ColumnDefinitions="1*,5*" RowDefinitions="1*,5*">
-		<Border Grid.Column="0" Grid.Row="0" Width="70" Height="70" Tapped="DialogWindow" >
-			<Image Source="resources/locationicon.png" Width="50"/>
-		</Border>
-		
-		
-	    <Button Grid.Column="1" Grid.Row="0" Click="Test">
-		    click clack clock
-	    </Button>
-    </Grid>
+		x:DataType="local:DataContextForWeatherApp"
+        Title="WeatherApp"
+		Name="Window"
+		CornerRadius="50"
+		WindowStartupLocation="CenterScreen"
+		Background="{Binding Brush}"
+		Icon="./resources/02d@4x.png">
+	<Window.DataContext>
+		<local:DataContextForWeatherApp/>
+	</Window.DataContext>
+
+	<ScrollViewer HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Hidden">
+		<SplitView  IsPaneOpen="False" Name="SidePanel" CompactPaneLength="0">
+			<SplitView.Pane>
+			<StackPanel>
+				<TextBlock Foreground="Black" FontFamily="TitilliumWeb" FontSize="52" HorizontalAlignment="Center">
+					Settings
+				</TextBlock>
+				<TextBlock Foreground="Black" FontFamily="TitilliumWeb" FontSize="32" Margin="15">
+					Theme Options
+				</TextBlock>
+				<StackPanel>
+					<RadioButton Foreground="Black" GroupName="theme" Name="rad_b_1_1" Content="Auto" IsChecked="True" Margin="15,5,0,0"/>
+					<RadioButton Foreground="Black" GroupName="theme" Name="rad_b_1_2" Content="Night"  Margin="15,5,0,0"/>
+					<RadioButton Foreground="Black" GroupName="theme" Name="rad_b_1_3" Content="Day"  Margin="15,5,0,0"/>
+					<RadioButton Foreground="Black" GroupName="theme" Name="rad_b_1_4" Content="Sunrise"  Margin="15,5,0,0"/>
+				</StackPanel>
+
+				<TextBlock Foreground="Black" FontFamily="TitilliumWeb" FontSize="32" Margin="15">
+					Degree format
+				</TextBlock>
+				<StackPanel>
+					<RadioButton Foreground="Black" GroupName="temp" Name="rad_b_2_1" Content="Celsius" IsChecked="True" Margin="15,5,0,0"/>
+					<RadioButton Foreground="Black" GroupName="temp" Name="rad_b_2_2" Content="Fahrenheit"  Margin="15,5,0,0"/>
+					<RadioButton Foreground="Black" GroupName="temp" Name="rad_b_2_3" Content="Kelvin"  Margin="15,5,0,0"/>
+				</StackPanel>
+
+				<TextBlock Foreground="Black" FontFamily="TitilliumWeb" FontSize="32" Margin="15">
+					Window Size
+				</TextBlock>
+				<StackPanel Orientation="Horizontal">
+					<NumericUpDown Margin="15" Name="upDown1" Increment="10"
+				   VerticalAlignment="Center"
+				   Watermark="Height"/>
+					<NumericUpDown  Margin="15" Name="upDown2" Increment="10"
+				   VerticalAlignment="Center"
+				   Watermark="Width"/>
+				</StackPanel>
+				
+				<Button FontSize="24" Click="ApplySettings" FontFamily="TitilliumWeb" HorizontalAlignment="Center" Margin="20"> Apply </Button>
+			
+			</StackPanel>
+			</SplitView.Pane>
+														<!-- 75 + 166 + 125 + 110 + 100 + 100 = 676 total, meaning 1,18343 pixels per thing-->
+			<Grid RowDefinitions="89,196,148,130,118,*" >
+				<Grid ColumnDefinitions="1*,5*,1*" Grid.Row="0">
+						<Image Source="resources/three-horizontal-lines-icon.png" Tapped="SidePanelOpener" Width="50"/>
+					<TextBlock Foreground="{Binding FGBrush}" FontFamily="TitilliumWeb" FontWeight="Black" Grid.Column="1" Grid.Row="0"
+							   HorizontalAlignment="Center" VerticalAlignment="Center"
+							   FontSize="28" Text="{Binding Date}"
+							   >
+					</TextBlock>
+	
+						<Image Grid.Column="2" Source="resources/locationicon.png" Tapped="DialogWindow" Width="75"/>
+					
+				</Grid>
+				
+				<Grid ColumnDefinitions="*,*" Grid.Row="1" ShowGridLines="False">
+					<StackPanel Grid.Column="0">
+						<TextBlock Foreground="{Binding FGBrush}" FontStyle="Italic" FontWeight="Bold" FontFamily="TitilliumWeb" Padding="20,10,80,20" HorizontalAlignment="Center"
+								   FontSize="26" TextWrapping="WrapWithOverflow" Text="{Binding CityName}"/>
+						<TextBlock Foreground="{Binding FGBrush}" FontFamily="TitilliumWeb" Padding="10,0,10,0" HorizontalAlignment="Center"
+								   FontSize="32" Text="{Binding Current_temperature}"/>
+					</StackPanel>
+					<Grid RowDefinitions="2*,1*" Grid.Column="1">
+						<Image	HorizontalAlignment="Center"
+								VerticalAlignment="Center" Grid.Row="0"
+								Source="{Binding Current_weather_icon}"/>
+						<TextBlock Foreground="{Binding FGBrush}" FontFamily="TitilliumWeb" HorizontalAlignment="Center"
+								   VerticalAlignment="Center" FontSize="20"
+								   Text="{Binding Current_weather_name}" Grid.Row="1"/>
+					</Grid>
+				</Grid>
+				<ScrollViewer Grid.Row="2" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Disabled">
+					<ItemsControl Foreground="{Binding FGBrush}" ItemsSource="{Binding SubIconCollection}">
+						<ItemsControl.ItemsPanel>
+							<ItemsPanelTemplate>
+								<StackPanel Orientation="Horizontal"/>
+							</ItemsPanelTemplate>
+						</ItemsControl.ItemsPanel>
+						<ItemsControl.ItemTemplate>
+							<DataTemplate>
+								<StackPanel Margin="3,0,0,0">
+									<TextBlock  FontFamily="TitilliumWeb" Padding="5" FontSize="20" Width="100" Text="{Binding Time}"/>
+									<TextBlock  FontFamily="TitilliumWeb" Padding="5" FontSize="20" Width="100" Text="{Binding Temperature}"/>
+									<Image Margin="5" Width="50" Source="{Binding Icon}"/>
+								</StackPanel>
+							</DataTemplate>
+						</ItemsControl.ItemTemplate>
+					</ItemsControl>
+				</ScrollViewer>
+				<ScrollViewer Foreground="{Binding FGBrush}" Grid.Row="3" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Disabled">
+					<StackPanel Orientation="Horizontal">
+						<StackPanel Width="150" Margin="15,0,0,0">
+							<TextBlock  FontFamily="TitilliumWeb" Padding="5" FontSize="20" Width="150" Text="Humidity:"/>
+							<TextBlock  FontFamily="TitilliumWeb" Padding="5" FontSize="20" Width="150" Text="{Binding Humidity}"/>
+						</StackPanel>
+						<StackPanel Width="150">
+							<TextBlock  FontFamily="TitilliumWeb" Padding="5" FontSize="20" Width="150" Text="Pressure:"/>
+							<TextBlock  FontFamily="TitilliumWeb" Padding="5" FontSize="20" Width="150" Text="{Binding Pressure}"/>
+						</StackPanel>
+						<StackPanel Width="150">
+							<TextBlock  FontFamily="TitilliumWeb" Padding="5" FontSize="20" Width="150" Text="Wind:"/>
+							<TextBlock  FontFamily="TitilliumWeb" Padding="5" FontSize="20" Width="150" Text="{Binding Wind}"/>
+						</StackPanel>
+						<StackPanel Width="150">
+							<TextBlock  FontFamily="TitilliumWeb" Padding="5" FontSize="20" Width="150" Text="Gusts:"/>
+							<TextBlock  FontFamily="TitilliumWeb" Padding="5" FontSize="20" Width="150" Text="{Binding Gusts}"/>
+						</StackPanel>
+						<StackPanel Width="150">
+							<TextBlock  FontFamily="TitilliumWeb" Padding="5" FontSize="20" Width="150" Text="Visibility:"/>
+							<TextBlock  FontFamily="TitilliumWeb" Padding="5" FontSize="20" Width="150" Text="{Binding Visibility}"/>
+						</StackPanel>
+						<StackPanel Width="150">
+							<TextBlock  FontFamily="TitilliumWeb" Padding="5" FontSize="20" Width="150" Text="Precipitation:"/>
+							<TextBlock  FontFamily="TitilliumWeb" Padding="5" FontSize="20" Width="150" Text="{Binding H3}"/>
+						</StackPanel>
+						<StackPanel Width="150">
+							<TextBlock  FontFamily="TitilliumWeb" Padding="5" FontSize="20" Width="150" Text="Cloudiness:"/>
+							<TextBlock  FontFamily="TitilliumWeb" Padding="5" FontSize="20" Width="150" Text="{Binding All}"/>
+						</StackPanel>
+						<StackPanel Width="150">
+							<TextBlock  FontFamily="TitilliumWeb" Padding="5" FontSize="20" Width="150" Text="POP:❔" ToolTip.Tip="Probability of precipitation."/>
+							<TextBlock  FontFamily="TitilliumWeb" Padding="5" FontSize="20" Width="150" Text="{Binding POP}"/>
+						</StackPanel>
+					</StackPanel>
+				</ScrollViewer>
+				
+				<Grid Grid.Row="4" ColumnDefinitions="*,*">
+					<StackPanel Grid.Column="0">
+						<TextBlock  HorizontalAlignment="Center" Foreground="{Binding FGBrush}" FontFamily="TitilliumWeb" Padding="5" FontSize="20" Text="Sunrise: "/>
+						<TextBlock Margin="10" HorizontalAlignment="Center" Foreground="{Binding FGBrush}" FontFamily="TitilliumWeb" Padding="5" FontSize="20" Text="{Binding Sunrise}"/>
+					</StackPanel>
+					<StackPanel Grid.Column="1">
+						<TextBlock HorizontalAlignment="Center" Foreground="{Binding FGBrush}" FontFamily="TitilliumWeb" Padding="5" FontSize="20" Text="Sunset: "/>
+						<TextBlock Margin="10" HorizontalAlignment="Center" Foreground="{Binding FGBrush}" FontFamily="TitilliumWeb" Padding="5" FontSize="20" Text="{Binding Sunset}"/>
+					</StackPanel>
+				</Grid>
+
+				
+					<!--	<ItemsControl   ItemsSource=""
+									Name="itemscontrol">
+						<ItemsControl.ItemTemplate>
+							<DataTemplate>
+							</DataTemplate>
+						</ItemsControl.ItemTemplate>
+					</ItemsControl> -->
+				<Border Grid.Row="5" BorderBrush="{Binding LighterBrush}" Margin="10" BorderThickness="15" CornerRadius="35" Background="{Binding LighterBrush}">
+					<ItemsControl Foreground="{Binding LFGBrush}" ItemsSource="{Binding WeatherLines}">
+						<ItemsControl.ItemsPanel>
+							<ItemsPanelTemplate>
+								<StackPanel Orientation="Vertical"/>
+							</ItemsPanelTemplate>
+						</ItemsControl.ItemsPanel>
+						<ItemsControl.ItemTemplate>				
+									<DataTemplate>
+									<StackPanel Orientation="Vertical" Margin="0,10,0,10">
+									<TextBlock  FontFamily="TitilliumWeb" Margin="0,0,0,10" FontSize="24" FontWeight="Black" Text="{Binding Date}"/>
+									<ItemsControl ItemsSource="{Binding Rows}">
+										<ItemsControl.ItemTemplate>
+											<DataTemplate>
+												<StackPanel Orientation="Horizontal" Margin="0,5,0,5">
+													<StackPanel Width="100">
+														<TextBlock  FontFamily="TitilliumWeb" FontSize="18" Text="{Binding Part_of_day}" HorizontalAlignment="Left" FontWeight="Bold" Margin="5,0,0,5"/>
+														<TextBlock  FontFamily="TitilliumWeb" FontSize="16" Text="{Binding Temperature}" HorizontalAlignment="Center" FontWeight="Medium" Margin="0,5,0,5"/>
+													</StackPanel>
+													<StackPanel>
+														<TextBlock  FontFamily="TitilliumWeb" FontSize="16" HorizontalAlignment="Center" Text="{Binding Min_City_temperature}" FontWeight="Medium" Margin="0,10,0,5"/>
+														<TextBlock  FontFamily="TitilliumWeb" FontSize="16" HorizontalAlignment="Center" Text="..." Margin="0,0,0,5"/>
+														<TextBlock  FontFamily="TitilliumWeb" FontSize="16" HorizontalAlignment="Center" Text="{Binding Max_City_temperature}" FontWeight="Medium" Margin="0,0,0,5"/>
+													</StackPanel>
+													<StackPanel Width="75">
+														<Image Width="50" HorizontalAlignment="Center" Source="{Binding Icon}" Margin="30,0,10,0"/>
+														<TextBlock  FontFamily="TitilliumWeb" FontSize="16" Text="{Binding Icon_description}" HorizontalAlignment="Center" FontWeight="Medium" Margin="40,0,0,0"/>
+													</StackPanel>
+													
+													<StackPanel Margin="20,0,0,0" Width="100">
+														<TextBlock  FontFamily="TitilliumWeb" FontSize="18" Text="Humidity" HorizontalAlignment="Left" FontWeight="Bold" Margin="5,0,0,5"/>
+														<TextBlock  FontFamily="TitilliumWeb" FontSize="16" Text="{Binding Humidity}" HorizontalAlignment="Center" FontWeight="Medium" Margin="0,5,0,5"/>
+													</StackPanel>
+													<StackPanel Width="100">
+														<TextBlock  FontFamily="TitilliumWeb" FontSize="18" Text="Wind:" HorizontalAlignment="Left" FontWeight="Bold" Margin="5,0,0,5"/>
+														<TextBlock  FontFamily="TitilliumWeb" FontSize="16" Text="{Binding Wind}" HorizontalAlignment="Center" FontWeight="Medium" Margin="0,5,0,5"/>
+													</StackPanel>
+													
+												</StackPanel>
+											</DataTemplate>
+										</ItemsControl.ItemTemplate>
+									</ItemsControl>
+								</StackPanel>
+							</DataTemplate>
+						</ItemsControl.ItemTemplate>
+					</ItemsControl>
+				</Border>
+
+				
+
+			</Grid>
+		</SplitView>
+	</ScrollViewer>
+	
+	
 </Window>

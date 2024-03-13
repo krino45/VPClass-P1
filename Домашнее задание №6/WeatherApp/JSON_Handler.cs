@@ -28,7 +28,7 @@ namespace WeatherApp
             await File.WriteAllTextAsync(fileName, jsonString);
         }
 
-        public static async Task<T> ReadJSONAsync<T>(string filename)
+        public static async Task<T?> ReadJSONAsync<T>(string filename)
         {
             var jsonString = await File.ReadAllTextAsync(filename);
             return JsonSerializer.Deserialize<T>(jsonString, _options);

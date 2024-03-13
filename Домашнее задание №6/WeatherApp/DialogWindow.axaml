@@ -2,17 +2,36 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+		xmlns:local="clr-namespace:WeatherApp"
+        mc:Ignorable="d" d:DesignWidth="300" d:DesignHeight="180"
         x:Class="WeatherApp.DialogWindow"
+		x:DataType="local:DataContextForWeatherApp"
         Title="Input Prompt"
 		Width="300"
-		Height="150"
-		WindowStartupLocation="CenterScreen">
+		Height="180"
+		WindowStartupLocation="CenterScreen"
+		Topmost="True"
+	    SystemDecorations="None"
+		CornerRadius="15"
+		Background="{Binding Brush}">
+	<Window.DataContext>
+		<local:DataContextForWeatherApp/>
+	</Window.DataContext>
+	<Border BorderBrush="{Binding LighterBrush}" BorderThickness="5">
+		
 	<StackPanel>
-		<TextBlock Text="Enter text:"/>
-		<TextBox Name="_textBox"/>
-		<Button Tapped="ConfirmDialogButtonTapped">Confirm</Button>
-		<Button Tapped="CloseDialogButtonTapped">Cancel</Button>
+		<TextBlock Padding="5" Text="Enter the city:" HorizontalAlignment="Center"/>
+		<TextBox Name="_textBox"		Background="{Binding LighterBrush}" 
+				 BorderThickness="5"	BorderBrush="{Binding LighterBrush}"
+				 CornerRadius="15"
+				 Margin="5"/>
+		<Button Tapped="ConfirmDialogButtonTapped" Background="{Binding LighterBrush}"
+				HorizontalAlignment="Center" Margin="5" 
+				Content="Confirm"/>
+		<Button Tapped="CloseDialogButtonTapped" Background="{Binding LighterBrush}"
+				HorizontalAlignment="Center" Margin="5"
+				Content="Cancel"/>
 	</StackPanel>
-	
+
+	</Border>
 </Window>

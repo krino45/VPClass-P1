@@ -2,6 +2,7 @@
 using System.Text.Json;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using System;
 
 namespace WeatherApp
 {
@@ -30,7 +31,16 @@ namespace WeatherApp
                     {
                         throw new System.Exception("Couldn't open file in: RequestHandlerFactory. ");
                     }
-                    string filecityName = JsonNamingPolicy.CamelCase.ConvertName(locations[0].Name);
+                    string filecityName;
+                    try
+                    {
+                        filecityName = JsonNamingPolicy.CamelCase.ConvertName(locations[0].Name);
+                    }
+                    catch(Exception ex)
+                    {
+                        Console.WriteLine(ex.Message);
+                        filecityName = "Novosibirsk";
+                    }
                     if (filecityName == cityname) 
                     {
                         return new ForecastRequestHandler();
