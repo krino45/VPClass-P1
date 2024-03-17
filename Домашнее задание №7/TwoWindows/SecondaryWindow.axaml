@@ -1,0 +1,35 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+        x:Class="TwoWindows.SecondaryWindow"
+        Title="TwoWindows">
+	<Grid ColumnDefinitions="*,*,*" RowDefinitions="*,*,*">
+		<Button Name="Button" HorizontalAlignment="Center" Content="BUTTON" Grid.Row="0" Grid.Column="0" />
+		<TextBox Name="TextBox" Text="Type here!" Width="300" HorizontalAlignment="Center" Grid.Row="0" Grid.Column="1" />
+		<Slider Name="Slider"	 Height="150" Orientation="Vertical" MinHeight="0" MaxHeight="100" HorizontalAlignment="Center" Grid.Row="0" Grid.Column="2"/>
+		<ToggleSwitch Name="ToggleSwitch" HorizontalAlignment="Center" Grid.Row="1" Grid.Column="0" />
+		<CheckBox Name="CheckBox" HorizontalAlignment="Center" Grid.Row="1" Grid.Column="1" />
+		<StackPanel Grid.Row="1" Grid.Column="2" Name="RadioButton">
+			<RadioButton Name="rb1" GroupName="RadioButton" HorizontalAlignment="Center"/>
+			<RadioButton Name="rb2" GroupName="RadioButton" HorizontalAlignment="Center"/>
+			<RadioButton Name="rb3" GroupName="RadioButton" HorizontalAlignment="Center"/>
+		</StackPanel>
+		
+		<ListBox Name="ListBox" Grid.Row="2" Grid.ColumnSpan="3">
+			<ListBoxItem Name="li1">
+				Hi 1 
+			</ListBoxItem>
+			<ListBoxItem Name="li2">
+				Hi 2
+			</ListBoxItem>
+			<ListBoxItem Name="li3">
+				Hi 3
+			</ListBoxItem>
+			<ListBoxItem Name="li4">
+				Hi 4
+			</ListBoxItem>
+		</ListBox>
+	</Grid>
+</Window>

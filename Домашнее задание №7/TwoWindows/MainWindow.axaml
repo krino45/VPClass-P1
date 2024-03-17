@@ -1,0 +1,42 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+        x:Class="TwoWindows.MainWindow"
+        Title="TwoWindows">
+
+	<Grid ColumnDefinitions="*,*">
+		<StackPanel>
+			<Button Tapped="Init" Content="Button"/>
+			<TextBlock Margin="5" Text="Window events:"/>
+			<TextBlock Name="textblockPE1" Text="hi" />
+			<TextBlock Name="textblockPE2" Text="hi" />
+			<TextBlock Name="textblockPE3" Text="hi" />
+			<TextBlock Name="textblockPE4" Text="hi" />
+			<TextBlock Name="textblockPE5" Text="hi" />
+			<TextBlock Name="textblockPE6" Text="hi" />
+			<TextBlock Margin="5" Text="Button events:"/>
+			<TextBlock Name="textblockBE1" Text="hi" />
+			<TextBlock Name="textblockBE2" Text="hi" />
+			<TextBlock Margin="5" Text="TextBox events:"/>
+			<TextBlock Name="textblockTE1" Text="hi" />
+			<TextBlock Name="textblockTE2" Text="hi" />
+			<TextBlock Margin="5" Text="Slider events:"/>
+			<TextBlock Name="textblockSE" Text="hi"/>
+		</StackPanel>
+		<StackPanel Grid.Column="1">
+			<TextBlock Margin="5" Text="ToggleBox events:"/>
+			<TextBlock Name="textblockToggleBE" Text="hi" />
+			<TextBlock Margin="5" Text="CheckBox events:"/>
+			<TextBlock Name="textblockCE" Text="hi" />
+			<TextBlock Margin="5" Text="RadioButton events:"/>
+			<TextBlock Name="textblockRE_rb1" Text="hi" />
+			<TextBlock Name="textblockRE_rb2" Text="hi" />
+			<TextBlock Name="textblockRE_rb3" Text="hi" />
+			<TextBlock Margin="5" Text="ListBox events:"/>
+			<TextBlock Name="textblockLE" Text="hi" />
+		</StackPanel>
+	</Grid>
+
+</Window>
