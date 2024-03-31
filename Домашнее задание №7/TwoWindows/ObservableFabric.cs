@@ -44,8 +44,8 @@ namespace TwoWindows
             var button = window.GetControl<Button>("Button");
             if (button != null)
             {
-                button.Tapped += (sender, args) => _subject.OnNext(("textblockBE1", "Button tapped!"));
-                button.DoubleTapped += (sender, args) => _subject.OnNext(("textblockBE2", "Button doubletapped!"));
+                button.Tapped += (sender, args) => _subject.OnNext(("textblockBE1", $"Button tapped! {DateTimeOffset.Now}"));
+                button.DoubleTapped += (sender, args) => _subject.OnNext(("textblockBE2", $"Button doubletapped! {DateTimeOffset.Now}"));
             }
 
             var textbox = window.GetControl<TextBox>("TextBox");
@@ -79,7 +79,7 @@ namespace TwoWindows
             var listBox = window.GetControl<ListBox>("ListBox");
             if (listBox != null)
             {
-                listBox.SelectionChanged += (sender, args) => _subject.OnNext(("textblockLE", $"ListBox selection changed to {listBox.SelectedItem}"));
+                listBox.SelectionChanged += (sender, args) => _subject.OnNext(("textblockLE", $"ListBox selection changed to item #{listBox.SelectedIndex + 1}"));
             }
         }
 

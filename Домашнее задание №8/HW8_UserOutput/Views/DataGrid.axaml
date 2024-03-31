@@ -1,0 +1,25 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:vm="using:HW8_UserOutput.ViewModels"
+             mc:Ignorable="d" d:DesignWidth="1300" d:DesignHeight="500"
+             x:Class="HW8_UserOutput.Views.DataGrid"
+             x:DataType="vm:DataGridViewModel">
+	
+	<StackPanel>
+		<DataGrid ItemsSource="{Binding Users}">
+			<DataGrid.Columns>
+				<DataGridTextColumn Header="Id"  Binding="{Binding Id}"/>
+				<DataGridTextColumn Header="Name" Binding="{Binding Name}" />
+				<DataGridTextColumn Header="Username" Binding="{Binding Username}" />
+				<DataGridTextColumn Header="Zipcode" Binding="{Binding Address.Zipcode}" />
+				<DataGridTextColumn Header="Email" Binding="{Binding Email}" />
+				<DataGridTextColumn Header="Phone" Binding="{Binding Phone}" />
+				<DataGridTextColumn Header="Website" Binding="{Binding Website}" />
+				<DataGridTextColumn Header="Company" Binding="{Binding Company.Name}" />
+			</DataGrid.Columns>
+		</DataGrid>
+	</StackPanel>
+
+</UserControl>
