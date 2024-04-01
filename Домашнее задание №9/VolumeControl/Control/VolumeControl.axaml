@@ -15,7 +15,7 @@
 						  Width="500" Height="100"
 						  Name="PART_Grid">
 						<Button CornerRadius="0" Background="Transparent" Command="{TemplateBinding FolderButton}" CommandParameter="{TemplateBinding FolderButtonParameter}">
-							<Image Width="90" Source="avares://VolumeControl/Assets/asset1.png"/>
+							<Image Width="90" Source="{TemplateBinding ImageSource}"/>
 						</Button>
 						<Slider Grid.Column="1" Width="300" VerticalAlignment="Center"
 								Name="PART_Slider"
