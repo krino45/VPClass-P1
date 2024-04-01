@@ -21,7 +21,7 @@
 		<controls:VolumeControl Name="VolumeControl" Margin="0,10" 
 								SliderMin="{Binding ElementName=x1, Path=Value}"  
 			                    SliderMax="{Binding ElementName=x2, Path=Value}" 
-								/>
+								ImageSource="./Assets/asset1.png" />
 		<TextBlock HorizontalAlignment="Center" Text="Min:"/>
 		<NumericUpDown Value="0" Width="120" Name="x1" Margin="10"/>
 		<TextBlock HorizontalAlignment="Center" Text="Max:"/>

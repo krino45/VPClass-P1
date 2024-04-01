@@ -1,6 +1,7 @@
 ﻿using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Controls.Primitives;
+using Avalonia.Media.Imaging;
 using Avalonia.VisualTree;
 using System;
 using System.Linq;
@@ -118,6 +119,15 @@ namespace VolumeControl.Controls
         {
             get => GetValue(SliderMaxProperty);
             set => SetValue(SliderMaxProperty, value);
+        }
+
+        public static readonly StyledProperty<Bitmap> ImageSourceProperty =
+           AvaloniaProperty.Register<VolumeControl, Bitmap>(nameof(ImageSource), defaultValue: new Bitmap(@".\Assets\avalonia-logo.ico"));
+
+        public Bitmap ImageSource
+        {
+            get => GetValue(ImageSourceProperty);
+            set => SetValue(ImageSourceProperty, value);
         }
     }
     public class RelayCommand : ICommand
