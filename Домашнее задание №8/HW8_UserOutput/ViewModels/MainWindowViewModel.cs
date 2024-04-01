@@ -23,10 +23,8 @@ namespace HW8_UserOutput.ViewModels
             _viewModelBases.Add(new DataGridViewModel());
             _viewModelBases.Add(new TreeViewViewModel());
             _content = "Welcome to Avalonia!";
-            ChangeViewCommand = ReactiveCommand.Create<ViewModelBase>(ChangeView);
         }
-        public ReactiveCommand<ViewModelBase, Unit> ChangeViewCommand { get; }
-        private void ChangeView(ViewModelBase viewModel)
+        public void ChangeView(ViewModelBase viewModel)
         {
             Content = viewModel;
         }

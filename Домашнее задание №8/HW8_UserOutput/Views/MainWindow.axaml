@@ -28,10 +28,17 @@
 		</DataTemplate>
 	</Window.DataTemplates>
 
-	<StackPanel>
-        <RadioButton GroupName="RB" Content="DataGrid" Command="{Binding ChangeViewCommand}" CommandParameter="{Binding Path=viewModelBases[0]}"/>
-		<RadioButton GroupName="RB" Content="TreeView" Command="{Binding ChangeViewCommand}" CommandParameter="{Binding Path=viewModelBases[1]}"/>
-		<ContentControl Content="{Binding Content}"/>
-	</StackPanel>
+	<Grid ColumnDefinitions="1*,5*">
+		<ListBox Grid.Column="0">
+			<ListBoxItem Name="DataGrid" Tapped="ListBoxItem_Tapped">
+					<TextBlock Text="DataGrid" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+			</ListBoxItem>
+			
+			<ListBoxItem Name="TreeView" Tapped="ListBoxItem_Tapped">
+					<TextBlock Text="TreeView" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+			</ListBoxItem>
+		</ListBox>
+		<ContentControl Grid.Column="1" Content="{Binding Content}"/>
+	</Grid>
 
 </Window>

@@ -1,0 +1,34 @@
+<Styles xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:controls="using:VolumeControl.Controls">
+	<Design.PreviewWith>
+		<controls:VolumeControl />
+	</Design.PreviewWith>
+
+	<Style Selector="controls|VolumeControl">
+		<!-- Set Defaults -->
+		<Setter Property="Template">
+			<ControlTemplate>
+				<Border BorderBrush="Black" Width="500" BorderThickness="5" CornerRadius="5" Name="PART_border">
+					<Grid Background="Transparent"
+						  ColumnDefinitions="1*,4*" 
+						  Width="500" Height="100"
+						  Name="PART_Grid">
+						<Button CornerRadius="0" Background="Transparent" Command="{TemplateBinding FolderButton}" CommandParameter="{TemplateBinding FolderButtonParameter}">
+							<Image Width="90" Source="avares://VolumeControl/Assets/asset1.png"/>
+						</Button>
+						<Slider Grid.Column="1" Width="300" VerticalAlignment="Center"
+								Name="PART_Slider"
+								Background="Black" 
+								TickFrequency="1"
+								IsSnapToTickEnabled="True"
+								TickPlacement="TopLeft"
+								Minimum="{TemplateBinding SliderMin}" 
+								Maximum="{TemplateBinding SliderMax}"
+								Value="{TemplateBinding SliderValue}"/>
+					</Grid>
+				</Border>
+			</ControlTemplate>
+		</Setter>
+	</Style>
+</Styles>
