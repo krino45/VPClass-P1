@@ -1,0 +1,347 @@
+<Styles xmlns="https://github.com/avaloniaui"
+			xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+			xmlns:controls="using:AvaloniaApplication1.Controls">
+	
+	  <Design.PreviewWith>
+			<controls:Pallete/>
+	  </Design.PreviewWith>
+
+		<Style Selector="controls|Pallete">
+			<!-- Set Defaults -->
+			<Setter Property="Template">
+				<ControlTemplate>
+					<Grid Background="LightGray" ColumnDefinitions="1*,*">
+						<StackPanel Grid.Column="0" Margin="10,25,10,10">
+							<TextBlock Text="Основные цвета:"/>
+							<StackPanel Orientation="Horizontal">
+								<Border BorderThickness="2" BorderBrush="Gray"  Margin="5">
+									<Rectangle Width="10" Height="10" Fill="#FF0000"/>
+								</Border>
+								<Border BorderThickness="2" BorderBrush="Gray"  Margin="5">
+									<Rectangle Width="10" Height="10" Fill="#FFA500"/>
+								</Border>
+								<Border BorderThickness="2" BorderBrush="Gray"  Margin="5">
+									<Rectangle Width="10" Height="10" Fill="#FFEA00"/>
+								</Border>
+
+								<Border BorderThickness="2" BorderBrush="Gray"  Margin="5">
+									<Rectangle Width="10" Height="10" Fill="#008000"/>
+								</Border>
+								<Border BorderThickness="2" BorderBrush="Gray"  Margin="5">
+									<Rectangle Width="10" Height="10" Fill="#0000FF"/>
+								</Border>
+
+								<Border BorderThickness="2" BorderBrush="Gray"  Margin="5">
+									<Rectangle Width="10" Height="10" Fill="#00FFFF"/>
+								</Border>
+
+								<Border BorderThickness="2" BorderBrush="Gray"  Margin="5">
+									<Rectangle Width="10" Height="10" Fill="#800080"/>
+								</Border>
+								<Border BorderThickness="2" BorderBrush="Gray"  Margin="5">
+									<Rectangle Width="10" Height="10" Fill="#F3E5AB"/>
+								</Border>
+							</StackPanel>
+						
+							<StackPanel Orientation="Horizontal">
+								<Border BorderThickness="2" BorderBrush="Gray"  Margin="5">
+									<Rectangle Width="10" Height="10" Fill="#C21E56"/>
+								</Border>
+								<Border BorderThickness="2" BorderBrush="Gray"  Margin="5">
+									<Rectangle Width="10" Height="10" Fill="#FFAA33"/>
+								</Border>
+								<Border BorderThickness="2" BorderBrush="Gray"  Margin="5">
+									<Rectangle Width="10" Height="10" Fill="#FAFA33"/>
+								</Border>
+
+								<Border BorderThickness="2" BorderBrush="Gray"  Margin="5">
+									<Rectangle Width="10" Height="10" Fill="#00A36C"/>
+								</Border>
+								<Border BorderThickness="2" BorderBrush="Gray"  Margin="5">
+									<Rectangle Width="10" Height="10" Fill="#00008B"/>
+								</Border>
+
+								<Border BorderThickness="2" BorderBrush="Gray"  Margin="5">
+									<Rectangle Width="10" Height="10" Fill="#7DF9FF"/>
+								</Border>
+
+								<Border BorderThickness="2" BorderBrush="Gray"  Margin="5">
+									<Rectangle Width="10" Height="10" Fill="#FF10F0"/>
+								</Border>
+								<Border BorderThickness="2" BorderBrush="Gray"  Margin="5">
+									<Rectangle Width="10" Height="10" Fill="#F0EAD6"/>
+								</Border>
+							</StackPanel>
+						
+							<StackPanel Orientation="Horizontal">
+								<Border BorderThickness="2" BorderBrush="Gray"  Margin="5">
+									<Rectangle Width="10" Height="10" Fill="#FA8072"/>
+								</Border>
+								<Border BorderThickness="2" BorderBrush="Gray"  Margin="5">
+									<Rectangle Width="10" Height="10" Fill="#FFC000"/>
+								</Border>
+								<Border BorderThickness="2" BorderBrush="Gray"  Margin="5">
+									<Rectangle Width="10" Height="10" Fill="#FFFF8F"/>
+								</Border>
+
+								<Border BorderThickness="2" BorderBrush="Gray"  Margin="5">
+									<Rectangle Width="10" Height="10" Fill="#7CFC00"/>
+								</Border>
+								<Border BorderThickness="2" BorderBrush="Gray"  Margin="5">
+									<Rectangle Width="10" Height="10" Fill="#0437F2"/>
+								</Border>
+
+								<Border BorderThickness="2" BorderBrush="Gray"  Margin="5">
+									<Rectangle Width="10" Height="10" Fill="#F0FFFF"/>
+								</Border>
+
+								<Border BorderThickness="2" BorderBrush="Gray"  Margin="5">
+									<Rectangle Width="10" Height="10" Fill="#FF69B4"/>
+								</Border>
+								<Border BorderThickness="2" BorderBrush="Gray"  Margin="5">
+									<Rectangle Width="10" Height="10" Fill="#FFF8DC"/>
+								</Border>
+							</StackPanel>
+						
+							<StackPanel Orientation="Horizontal">
+								<Border BorderThickness="2" BorderBrush="Gray"  Margin="5">
+									<Rectangle Width="10" Height="10" Fill="#8B0000"/>
+								</Border>
+								<Border BorderThickness="2" BorderBrush="Gray"  Margin="5">
+									<Rectangle Width="10" Height="10" Fill="#EC5800"/>
+								</Border>
+								<Border BorderThickness="2" BorderBrush="Gray"  Margin="5">
+									<Rectangle Width="10" Height="10" Fill="#F4C430"/>
+								</Border>
+
+								<Border BorderThickness="2" BorderBrush="Gray"  Margin="5">
+									<Rectangle Width="10" Height="10" Fill="#98FB98"/>
+								</Border>
+								<Border BorderThickness="2" BorderBrush="Gray"  Margin="5">
+									<Rectangle Width="10" Height="10" Fill="#3F00FF"/>
+								</Border>
+
+								<Border BorderThickness="2" BorderBrush="Gray"  Margin="5">
+									<Rectangle Width="10" Height="10" Fill="#40E0D0"/>
+								</Border>
+
+								<Border BorderThickness="2" BorderBrush="Gray"  Margin="5">
+									<Rectangle Width="10" Height="10" Fill="#E0B0FF"/>
+								</Border>
+								<Border BorderThickness="2" BorderBrush="Gray"  Margin="5">
+									<Rectangle Width="10" Height="10" Fill="#F5F5DC"/>
+								</Border>
+							</StackPanel>
+							<StackPanel Orientation="Horizontal">
+							
+								<Border BorderThickness="2" BorderBrush="Gray"  Margin="5">
+									<Rectangle Width="10" Height="10" Fill="#630330"/>
+								</Border>
+								<Border BorderThickness="2" BorderBrush="Gray"  Margin="5">
+									<Rectangle Width="10" Height="10" Fill="#FF5F15"/>
+								</Border>
+								<Border BorderThickness="2" BorderBrush="Gray"  Margin="5">
+									<Rectangle Width="10" Height="10" Fill="#FFAA33"/>
+								</Border>
+
+								<Border BorderThickness="2" BorderBrush="Gray"  Margin="5">
+									<Rectangle Width="10" Height="10" Fill="#355E3B"/>
+								</Border>
+								<Border BorderThickness="2" BorderBrush="Gray"  Margin="5">
+									<Rectangle Width="10" Height="10" Fill="#000080"/>
+								</Border>
+
+								<Border BorderThickness="2" BorderBrush="Gray"  Margin="5">
+									<Rectangle Width="10" Height="10" Fill="#A7C7E7"/>
+								</Border>
+
+								<Border BorderThickness="2" BorderBrush="Gray"  Margin="5">
+									<Rectangle Width="10" Height="10" Fill="#702963"/>
+								</Border>
+								<Border BorderThickness="2" BorderBrush="Gray"  Margin="5">
+									<Rectangle Width="10" Height="10" Fill="#F9F6EE"/>
+								</Border>
+							</StackPanel>
+							<StackPanel Orientation="Horizontal">
+								<Border BorderThickness="2" BorderBrush="Gray"  Margin="5">
+									<Rectangle Width="10" Height="10" Fill="#800020"/>
+								</Border>
+								<Border BorderThickness="2" BorderBrush="Gray"  Margin="5">
+									<Rectangle Width="10" Height="10" Fill="#A52A2A"/>
+								</Border>
+								<Border BorderThickness="2" BorderBrush="Gray"  Margin="5">
+									<Rectangle Width="10" Height="10" Fill="#36454F"/>
+								</Border>
+
+								<Border BorderThickness="2" BorderBrush="Gray"  Margin="5">
+									<Rectangle Width="10" Height="10" Fill="#301934"/>
+								</Border>
+								<Border BorderThickness="2" BorderBrush="Gray"  Margin="5">
+									<Rectangle Width="10" Height="10" Fill="#000000"/>
+								</Border>
+
+								<Border BorderThickness="2" BorderBrush="Gray"  Margin="5">
+									<Rectangle Width="10" Height="10" Fill="#808080"/>
+								</Border>
+
+								<Border BorderThickness="2" BorderBrush="Gray"  Margin="5">
+									<Rectangle Width="10" Height="10" Fill="#301934"/>
+								</Border>
+								<Border BorderThickness="2" BorderBrush="Gray"  Margin="5">
+									<Rectangle Width="10" Height="10" Fill="#FFFFFF"/>
+								</Border>
+							</StackPanel>
+						
+						
+							<TextBlock Text="Дополнительные цвета:" Margin="0,45,0,0"/>
+							<StackPanel Orientation="Horizontal">
+								<Border Name="border1" BorderThickness="2" BorderBrush="Gray"  Margin="5">
+									<Rectangle Width="10" Height="10" Fill="#FFFFFF"/>
+								</Border>
+								<Border Name="border2" BorderThickness="2" BorderBrush="Gray"  Margin="5">
+									<Rectangle Width="10" Height="10" Fill="#FFFFFF"/>
+								</Border>
+								<Border Name="border3" BorderThickness="2" BorderBrush="Gray"  Margin="5">
+									<Rectangle Width="10" Height="10" Fill="#FFFFFF"/>
+								</Border>
+
+								<Border Name="border4" BorderThickness="2" BorderBrush="Gray"  Margin="5">
+									<Rectangle Width="10" Height="10" Fill="#FFFFFF"/>
+								</Border>
+								<Border Name="border5" BorderThickness="2" BorderBrush="Gray"  Margin="5">
+									<Rectangle Width="10" Height="10" Fill="#FFFFFF"/>
+								</Border>
+
+								<Border Name="border6" BorderThickness="2" BorderBrush="Gray"  Margin="5">
+									<Rectangle Width="10" Height="10" Fill="#FFFFFF"/>
+								</Border>
+
+								<Border Name="border7" BorderThickness="2" BorderBrush="Gray"  Margin="5">
+									<Rectangle Width="10" Height="10" Fill="#FFFFFF"/>
+								</Border>
+								<Border Name="border8" BorderThickness="2" BorderBrush="Gray"  Margin="5">
+									<Rectangle Width="10" Height="10" Fill="#FFFFFF"/>
+								</Border>
+							</StackPanel>
+							<StackPanel Orientation="Horizontal">
+								<Border Name="border11" BorderThickness="2" BorderBrush="Gray"  Margin="5">
+									<Rectangle Width="10" Height="10" Fill="#FFFFFF"/>
+								</Border>
+								<Border Name="border12" BorderThickness="2" BorderBrush="Gray"  Margin="5">
+									<Rectangle Width="10" Height="10" Fill="#FFFFFF"/>
+								</Border>
+								<Border Name="border13" BorderThickness="2" BorderBrush="Gray"  Margin="5">
+									<Rectangle Width="10" Height="10" Fill="#FFFFFF"/>
+								</Border>
+
+								<Border Name="border14" BorderThickness="2" BorderBrush="Gray"  Margin="5">
+									<Rectangle Width="10" Height="10" Fill="#FFFFFF"/>
+								</Border>
+								<Border Name="border15" BorderThickness="2" BorderBrush="Gray"  Margin="5">
+									<Rectangle Width="10" Height="10" Fill="#FFFFFF"/>
+								</Border>
+
+								<Border Name="border16" BorderThickness="2" BorderBrush="Gray"  Margin="5">
+									<Rectangle Width="10" Height="10" Fill="#FFFFFF"/>
+								</Border>
+
+								<Border Name="border17" BorderThickness="2" BorderBrush="Gray"  Margin="5">
+									<Rectangle Width="10" Height="10" Fill="#FFFFFF"/>
+								</Border>
+								<Border Name="border18" BorderThickness="2" BorderBrush="Gray"  Margin="5">
+									<Rectangle Width="10" Height="10" Fill="#FFFFFF"/>
+								</Border>
+							</StackPanel>
+							<StackPanel Orientation="Horizontal" Margin="0,10,0,0">
+								<Border Name="border21" BorderThickness="2" BorderBrush="Gray"  Margin="5">
+									<Rectangle Width="10" Height="10" Fill="#FFFFFF"/>
+								</Border>
+								<Border Name="border22" BorderThickness="2" BorderBrush="Gray"  Margin="5">
+									<Rectangle Width="10" Height="10" Fill="#FFFFFF"/>
+								</Border>
+								<Border Name="border23" BorderThickness="2" BorderBrush="Gray"  Margin="5">
+									<Rectangle Width="10" Height="10" Fill="#FFFFFF"/>
+								</Border>
+
+								<Border Name="border24" BorderThickness="2" BorderBrush="Gray"  Margin="5">
+									<Rectangle Width="10" Height="10" Fill="#FFFFFF"/>
+								</Border>
+								<Border Name="border25" BorderThickness="2" BorderBrush="Gray"  Margin="5">
+									<Rectangle Width="10" Height="10" Fill="#FFFFFF"/>
+								</Border>
+
+								<Border Name="border26" BorderThickness="2" BorderBrush="Gray"  Margin="5">
+									<Rectangle Width="10" Height="10" Fill="#FFFFFF"/>
+								</Border>
+
+								<Border Name="border27" BorderThickness="2" BorderBrush="Gray"  Margin="5">
+									<Rectangle Width="10" Height="10" Fill="#FFFFFF"/>
+								</Border>
+								<Border Name="border28" BorderThickness="2" BorderBrush="Gray"  Margin="5">
+									<Rectangle Width="10" Height="10" Fill="#FFFFFF"/>
+								</Border>
+							</StackPanel>
+							<StackPanel Orientation="Horizontal">
+								<Border Name="border31" BorderThickness="2" BorderBrush="Gray"  Margin="5">
+									<Rectangle Width="10" Height="10" Fill="#FFFFFF"/>
+								</Border>
+								<Border Name="border32" BorderThickness="2" BorderBrush="Gray"  Margin="5">
+									<Rectangle Width="10" Height="10" Fill="#FFFFFF"/>
+								</Border>
+								<Border Name="border33" BorderThickness="2" BorderBrush="Gray"  Margin="5">
+									<Rectangle Width="10" Height="10" Fill="#FFFFFF"/>
+								</Border>
+
+								<Border Name="border34" BorderThickness="2" BorderBrush="Gray"  Margin="5">
+									<Rectangle Width="10" Height="10" Fill="#FFFFFF"/>
+								</Border>
+								<Border Name="border35" BorderThickness="2" BorderBrush="Gray"  Margin="5">
+									<Rectangle Width="10" Height="10" Fill="#FFFFFF"/>
+								</Border>
+
+								<Border Name="border36" BorderThickness="2" BorderBrush="Gray"  Margin="5">
+									<Rectangle Width="10" Height="10" Fill="#FFFFFF"/>
+								</Border>
+
+								<Border Name="border37" BorderThickness="2" BorderBrush="Gray"  Margin="5">
+									<Rectangle Width="10" Height="10" Fill="#FFFFFF"/>
+								</Border>
+								<Border Name="border38" BorderThickness="2" BorderBrush="Gray"  Margin="5">
+									<Rectangle Width="10" Height="10" Fill="#FFFFFF"/>
+								</Border>
+							</StackPanel>
+						</StackPanel>
+
+						<StackPanel Grid.Column="1">
+							<StackPanel Orientation="Horizontal">
+								<ColorSpectrum	Name="ColorSpectrum" Margin="5" HorizontalAlignment="Left" Color="{TemplateBinding ColorSpectrumValue}" Width="200" Height="200"/>
+								<ColorSlider	Name="BrightnessSlider"  Value="{TemplateBinding Brightness}" Minimum="0" Maximum="1" ColorComponent="Component3" ColorModel="Hsva" Color="{TemplateBinding ColorVal}" Margin="15" Height="200" Orientation="Vertical"/>
+							</StackPanel>
+							<Grid RowDefinitions="2*,1*,1*,1*" ColumnDefinitions="*,*,*,*,*">
+								<Border Grid.Column="0" Grid.RowSpan="2" Grid.Row="0" BorderThickness="2" Height="52" Width="72" HorizontalAlignment="Left" BorderBrush="Gray"  Margin="5">
+									<Rectangle Height="50" Width="70" Fill="{TemplateBinding ColorBrush}"/>
+								</Border>
+								<TextBlock Grid.Column="0" Grid.Row="2" Margin="8" Text="Цвет"/>
+									<TextBlock Grid.Column="1" Grid.Row="0" Text="Оттенок: " VerticalAlignment="Center"/>
+								<TextBox x:Name="hue" Grid.Column="2" Grid.Row="0"  VerticalAlignment="Center" Text="{TemplateBinding Hue, Mode=TwoWay}"/>
+									<TextBlock Grid.Column="3" Grid.Row="0" Text="Красный: " VerticalAlignment="Center"/>
+								<TextBox x:Name="red" Grid.Column="4" Grid.Row="0"  VerticalAlignment="Center" Text="{TemplateBinding RGB_Red, Mode=TwoWay}"/>								
+									<TextBlock Grid.Column="1" Grid.Row="1" Text="Контраст: " VerticalAlignment="Center"/>
+								<TextBox x:Name="sat" Grid.Column="2" Grid.Row="1"  VerticalAlignment="Center" Text="{TemplateBinding Saturation, Mode=TwoWay}"/>
+									<TextBlock Grid.Column="3" Grid.Row="1" Text="Зеленый: " VerticalAlignment="Center"/>
+								<TextBox x:Name="green" Grid.Column="4" Grid.Row="1"  VerticalAlignment="Center" Text="{TemplateBinding RGB_Green, Mode=TwoWay}"/>
+									<TextBlock Grid.Column="1" Grid.Row="2" Text="Яркость: " VerticalAlignment="Center"/>
+								<TextBox x:Name="lum" Grid.Column="2" Grid.Row="2"  VerticalAlignment="Center" Text="{TemplateBinding Luminocity, Mode=TwoWay}"/>
+									<TextBlock Grid.Column="3" Grid.Row="2" Text="Синий: " VerticalAlignment="Center"/>
+								<TextBox x:Name="blue" Grid.Column="4" Grid.Row="2"  VerticalAlignment="Center" Text="{TemplateBinding RGB_Blue, Mode=TwoWay}"/>
+							</Grid>
+							<Button HorizontalAlignment="Stretch" VerticalAlignment="Center" 
+									Margin="5" Content="Добавить цвет в набор" HorizontalContentAlignment="Center"
+									Command="{TemplateBinding AddColor}"/>
+						</StackPanel>
+				
+					</Grid>
+				</ControlTemplate>
+			</Setter>
+		</Style>
+	</Styles>
