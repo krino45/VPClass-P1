@@ -1,0 +1,14 @@
+<Styles xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:controls="using:ClassTypeThing.Controls">
+	<Design.PreviewWith>
+		<controls:ReflectionThing/>
+	</Design.PreviewWith>
+	<Style Selector="controls|ReflectionThing">
+		<Setter Property="Template">
+			<ControlTemplate>
+				<ContentControl Name="cc" Content="{Binding Content, RelativeSource={RelativeSource TemplatedParent}}"/>
+			</ControlTemplate>
+		</Setter>
+	</Style>
+</Styles>
