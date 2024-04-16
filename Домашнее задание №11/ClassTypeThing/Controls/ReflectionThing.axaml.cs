@@ -100,7 +100,7 @@ namespace ClassTypeThing.Controls
             }
             visitedTypes.Add(type);
             Console.WriteLine($"checking typeinfo for type: {type} ");
-            var fields = type.GetFields(BindingFlags.Instance | BindingFlags.GetField
+            var fields = type.GetProperties(BindingFlags.Instance | BindingFlags.GetField
                 | BindingFlags.Public | BindingFlags.Static | BindingFlags.NonPublic);
 
             Expander exp = new Expander();
@@ -113,9 +113,9 @@ namespace ClassTypeThing.Controls
             StackPanel stackPanel = new StackPanel();
             
 
-            foreach (FieldInfo fieldinfo in fields)
+            foreach (PropertyInfo fieldinfo in fields)
             {
-                Type fieldType = fieldinfo.FieldType;
+                Type fieldType = fieldinfo.PropertyType;
                 if (fieldType.Namespace?.StartsWith("System") ?? false)
                 {
                     Console.WriteLine($"base class fieldinfo: {fieldinfo}");
@@ -126,8 +126,16 @@ namespace ClassTypeThing.Controls
                     tb1.HorizontalAlignment = Avalonia.Layout.HorizontalAlignment.Left;
                     tb1.VerticalAlignment = Avalonia.Layout.VerticalAlignment.Center;
                     tb1.Margin = new Thickness(2);
-
-                    object? value = fieldinfo.GetValue(obj);
+                    object? value;
+                    try
+                    {
+                        value = fieldinfo.GetValue(obj);
+                    }
+                    catch (Exception ex)
+                    {
+                        value = "Exception: " +  ex.Message;
+                    }
+                    
                     TextBlock tb2 = new TextBlock();
                     tb2.Text = value?.ToString() ?? "null";
                     tb2.TextWrapping = TextWrapping.WrapWithOverflow;

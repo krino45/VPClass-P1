@@ -36,21 +36,30 @@
     }
     public class Users
     {
-        public int id;
+        private int id;
 
-        public string? name;
+        private string? name;
 
-        public string? username;
+        private string? username;
 
-        public string? email;
+        private string? email;
 
-        public Address? address;
+        private Address? address;
 
-        public string? phone;
+        private string? phone;
 
-        public string? website;
+        private string? website;
 
-        public Company? company;
+        private Company? company;
+
+        public int Id { get => id; set => id = value; }
+        public string? Name { get => name; set => name = value; }
+        public string? Username { get => username; set => username = value; }
+        public string? Email { get => email; set => email = value; }
+        public Address? Address { get => address; set => address = value; }
+        public string? Phone { get => phone; set => phone = value; }
+        public string? Website { get => website ; set => website = value; }
+        public Company? Company { get => company;  set => company = value; }
     }
     public class Animal
     {

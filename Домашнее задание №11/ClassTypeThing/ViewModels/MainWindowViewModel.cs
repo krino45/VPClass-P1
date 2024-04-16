@@ -40,10 +40,10 @@ namespace ClassTypeThing.ViewModels
         {
             var user = new Users
             {
-                address = new Address { City = "moscow", Geo = new Geo() },
-                name = "Name",
-                phone = "1234567890",
-                company = new Company()
+                Address = new Address { City = "moscow", Geo = new Geo() },
+                Name = "Name",
+                Phone = "1234567890",
+                Company = new Company()
             };
 
             var car = new Car
@@ -101,7 +101,7 @@ namespace ClassTypeThing.ViewModels
                     RAM = 16
                 }
             };
-
+            File.Create("example.txt");
             ContentVM = user;
             // Create a list of 10 different complex objects
             List<object> complexObjects = new List<object>
