@@ -1,0 +1,17 @@
+<Styles xmlns="https://github.com/avaloniaui"
+			xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+			xmlns:controls="using:LogicGates.Controls">
+
+	<Design.PreviewWith>
+		<controls:XNOR_gate/>
+	</Design.PreviewWith>
+
+	<Style Selector="controls|XNOR_gate">
+		<!-- Set Defaults  -->
+		<Setter Property="Template">
+			<ControlTemplate>
+				<ContentControl Content="{TemplateBinding Content}"/>
+			</ControlTemplate>
+		</Setter>
+	</Style>
+</Styles>

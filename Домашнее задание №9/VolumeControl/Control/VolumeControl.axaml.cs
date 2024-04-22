@@ -1,10 +1,13 @@
 ﻿using Avalonia;
+using Avalonia.Animation;
+using Avalonia.Animation.Easings;
 using Avalonia.Controls;
 using Avalonia.Controls.Primitives;
 using Avalonia.Media.Imaging;
 using Avalonia.VisualTree;
 using System;
 using System.Linq;
+using System.Transactions;
 using System.Windows.Input;
 
 namespace VolumeControl.Controls
@@ -51,6 +54,15 @@ namespace VolumeControl.Controls
             set => SetValue(FolderButtonParameterProperty, value);
         }
 
+        public static readonly StyledProperty<Transitions> A_TransitionProperty =
+            AvaloniaProperty.Register<VolumeControl, Transitions>(nameof(A_Transition));
+
+        public Transitions A_Transition
+        {
+            get => GetValue(A_TransitionProperty);
+            set => SetValue(A_TransitionProperty, value);
+        }
+
         public VolumeControl()
         {
             Console.WriteLine("yap");
@@ -67,21 +79,41 @@ namespace VolumeControl.Controls
 
         protected override void OnApplyTemplate(TemplateAppliedEventArgs e)
         {
-            base.OnApplyTemplate(e);
+            base.OnApplyTemplate(e); // do single slider, that gets found based on orientation
+            var transition = new Transitions
+{
+                new DoubleTransition
+                {
+                    Property = WidthProperty,
+                    Duration = TimeSpan.FromSeconds(1),
+                    Easing = new LinearEasing(),
+                },
+                new DoubleTransition
+                {
+                    Property = HeightProperty,
+                    Duration = TimeSpan.FromSeconds(1),
+                    Easing = new LinearEasing(),
+                }
+            };
 
-            var slider = e.NameScope.Find<Slider>("PART_Slider");
+
+            var slider1 = e.NameScope.Find<Slider>("PART_SliderUP");
+            var slider2 = e.NameScope.Find<Slider>("PART_SliderRIGHT");
             var grid = e.NameScope.Find<Grid>("PART_Grid");
             var border = e.NameScope.Find<Border>("PART_border");
-            if (slider != null && grid != null && border != null)
+            if (slider1 != null && slider2 != null && grid != null && border != null)
             {
-                slider.ValueChanged += (sender, args) =>
+                grid.Transitions = transition;
+                slider1.ValueChanged += (sender, args) =>
                 {
-                    SliderValueChanged?.Invoke(this, slider.Value);
+                    SliderValueChanged?.Invoke(this, slider1.Value);
                 };
                 FoldStateChanged += (sender, args) =>
                 {
-                    slider.IsEnabled = !args;
-                    slider.IsVisible = !args;
+                    slider1.IsEnabled = !args;
+                    slider2.IsEnabled = !args;
+                    slider1.IsVisible = !args;
+                    slider2.IsVisible = !args;
                     UpdateWidthAndColumnWidths(border, grid, args);
                 };
             }

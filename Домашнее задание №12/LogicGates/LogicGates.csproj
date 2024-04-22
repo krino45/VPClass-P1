@@ -9,9 +9,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Models\" />
     <AvaloniaResource Include="Assets\**" />
-	  <Resource Include="Assets\**" />
   </ItemGroup>
 
   <ItemGroup>
@@ -22,5 +20,32 @@
     <!--Condition below is needed to remove Avalonia.Diagnostics package from build output in Release configuration.-->
     <PackageReference Condition="'$(Configuration)' == 'Debug'" Include="Avalonia.Diagnostics" Version="11.0.10" />
     <PackageReference Include="Avalonia.ReactiveUI" Version="11.0.10" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="Controls\NOR_gate.axaml.cs">
+      <DependentUpon>NOR_gate.axaml</DependentUpon>
+    </Compile>
+    <Compile Update="Controls\XNOR_gate.axaml.cs">
+      <DependentUpon>XNOR_gate.axaml</DependentUpon>
+    </Compile>
+    <Compile Update="Controls\XOR_gate.axaml.cs">
+      <DependentUpon>XOR_gate.axaml</DependentUpon>
+    </Compile>
+    <Compile Update="Controls\OR_gate.axaml.cs">
+      <DependentUpon>OR_gate.axaml</DependentUpon>
+    </Compile>
+    <Compile Update="Controls\INVERTOR_gate.axaml.cs">
+      <DependentUpon>INVERTOR_gate.axaml</DependentUpon>
+    </Compile>
+    <Compile Update="Controls\BUFFER_gate.axaml.cs">
+      <DependentUpon>BUFFER_gate.axaml</DependentUpon>
+    </Compile>
+    <Compile Update="Controls\NAND_gate.axaml.cs">
+      <DependentUpon>NAND_gate.axaml</DependentUpon>
+    </Compile>
+    <Compile Update="Controls\AND_gate.axaml.cs">
+      <DependentUpon>AND_gate.axaml</DependentUpon>
+    </Compile>
   </ItemGroup>
 </Project>

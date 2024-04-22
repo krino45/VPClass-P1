@@ -87,12 +87,12 @@ namespace ClassTypeThing.Controls
                 Type type = e.GetType();
                 Console.WriteLine($"the type is {type}");
                 HashSet<Type> types = new HashSet<Type>();
-                var exp = TypeFieldInfoReflection(type, e, types);
+                var exp = TypepropertyInfoReflection(type, e, types);
                 Content = exp;
             }
         }
 
-        private Expander? TypeFieldInfoReflection(Type type, object? obj, HashSet<Type> visitedTypes)
+        private Expander? TypepropertyInfoReflection(Type type, object? obj, HashSet<Type> visitedTypes)
         {
             if (visitedTypes.Contains(type))
             {
@@ -100,7 +100,7 @@ namespace ClassTypeThing.Controls
             }
             visitedTypes.Add(type);
             Console.WriteLine($"checking typeinfo for type: {type} ");
-            var fields = type.GetProperties(BindingFlags.Instance | BindingFlags.GetField
+            var propertys = type.GetProperties(BindingFlags.Instance
                 | BindingFlags.Public | BindingFlags.Static | BindingFlags.NonPublic);
 
             Expander exp = new Expander();
@@ -113,15 +113,15 @@ namespace ClassTypeThing.Controls
             StackPanel stackPanel = new StackPanel();
             
 
-            foreach (PropertyInfo fieldinfo in fields)
+            foreach (PropertyInfo propertyinfo in propertys)
             {
-                Type fieldType = fieldinfo.PropertyType;
-                if (fieldType.Namespace?.StartsWith("System") ?? false)
+                Type propertyType = propertyinfo.PropertyType;
+                if (propertyType.Namespace?.StartsWith("System") ?? false)
                 {
-                    Console.WriteLine($"base class fieldinfo: {fieldinfo}");
+                    Console.WriteLine($"base class propertyinfo: {propertyinfo}");
 
                     TextBlock tb1 = new TextBlock();
-                    tb1.Text = fieldinfo.Name;
+                    tb1.Text = propertyinfo.Name;
                     tb1.TextWrapping = TextWrapping.WrapWithOverflow;
                     tb1.HorizontalAlignment = Avalonia.Layout.HorizontalAlignment.Left;
                     tb1.VerticalAlignment = Avalonia.Layout.VerticalAlignment.Center;
@@ -129,7 +129,7 @@ namespace ClassTypeThing.Controls
                     object? value;
                     try
                     {
-                        value = fieldinfo.GetValue(obj);
+                        value = propertyinfo.GetValue(obj);
                     }
                     catch (Exception ex)
                     {
@@ -167,11 +167,11 @@ namespace ClassTypeThing.Controls
                 }
                 else
                 {
-                    Console.WriteLine($"nonbaseclassfieldinfo: {fieldinfo}");
-                    object? nestedObj = fieldinfo.GetValue(obj);
+                    Console.WriteLine($"nonbaseclasspropertyinfo: {propertyinfo}");
+                    object? nestedObj = propertyinfo.GetValue(obj);
                     if (nestedObj != null)
                     {
-                        var nestedExpander = TypeFieldInfoReflection(fieldType, nestedObj, visitedTypes);
+                        var nestedExpander = TypepropertyInfoReflection(propertyType, nestedObj, visitedTypes);
                         if (nestedExpander != null)
                             stackPanel.Children.Add(nestedExpander);
                     }

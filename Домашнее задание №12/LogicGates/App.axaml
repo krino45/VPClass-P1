@@ -1,0 +1,23 @@
+<Application xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Class="LogicGates.App"
+             xmlns:local="using:LogicGates"
+             RequestedThemeVariant="Light">
+             <!-- "Default" ThemeVariant follows system theme variant. "Dark" or "Light" are other available options. -->
+
+    <Application.DataTemplates>
+        <local:ViewLocator/>
+    </Application.DataTemplates>
+  
+    <Application.Styles>
+        <FluentTheme />
+		<StyleInclude Source="/Controls/AND_gate.axaml"/>
+		<StyleInclude Source="/Controls/NAND_gate.axaml"/>
+		<StyleInclude Source="/Controls/BUFFER_gate.axaml"/>
+		<StyleInclude Source="/Controls/INVERTOR_gate.axaml"/>
+		<StyleInclude Source="/Controls/OR_gate.axaml"/>
+		<StyleInclude Source="/Controls/NOR_gate.axaml"/>
+		<StyleInclude Source="/Controls/XOR_gate.axaml"/>
+		<StyleInclude Source="/Controls/XNOR_gate.axaml"/>
+    </Application.Styles>
+</Application>

@@ -1,0 +1,36 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:vm="using:LogicGates.ViewModels"
+        xmlns:controls="using:LogicGates.Controls"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+        x:Class="LogicGates.Views.MainWindow"
+        x:DataType="vm:MainWindowViewModel"
+        Icon="/Assets/avalonia-logo.ico"
+        Title="LogicGates">
+
+	<Design.DataContext>
+		<!-- This only sets the DataContext for the previewer in an IDE,
+             to set the actual DataContext for runtime, set the DataContext property in code (look at App.axaml.cs) -->
+		<vm:MainWindowViewModel/>
+	</Design.DataContext>
+	<WrapPanel Orientation="Vertical">
+		<controls:AND_gate Name="and" LabelFont="Times New Roman" ViewStandard="{Binding ViewSTD}" InputCount="5" InputValues="{Binding InputValues1}"/>
+		<TextBlock HorizontalAlignment="Center" Text="{Binding OutputforAND}"/>
+		<controls:NAND_gate Name="nand" ViewStandard="{Binding ViewSTD}" InputCount="2" InputValues="{Binding InputValues2}"/>
+		<TextBlock HorizontalAlignment="Center"  Text="{Binding OutputforNAND}"/>
+		<controls:BUFFER_gate Name="buf" ViewStandard="{Binding ViewSTD}" InputCount="1" InputValues="{Binding InputValues3}"/>
+		<TextBlock HorizontalAlignment="Center"  Text="{Binding OutputforBUF}"/>
+		<controls:INVERTOR_gate Name="inv" ViewStandard="{Binding ViewSTD}" InputCount="1" InputValues="{Binding InputValues4}"/>
+		<TextBlock HorizontalAlignment="Center"  Text="{Binding OutputforINV}"/>
+		<controls:OR_gate Name="or" ViewStandard="{Binding ViewSTD}" InputCount="2" InputValues="{Binding InputValues5}"/>
+		<TextBlock HorizontalAlignment="Center"  Text="{Binding OutputforOR}"/>
+		<controls:NOR_gate Name="nor" ViewStandard="{Binding ViewSTD}" InputCount="2" InputValues="{Binding InputValues6}"/>
+		<TextBlock HorizontalAlignment="Center"  Text="{Binding OutputforNOR}"/>
+		<controls:XOR_gate Name="xor" ViewStandard="{Binding ViewSTD}" InputCount="2" InputValues="{Binding InputValues7}"/>
+		<TextBlock HorizontalAlignment="Center"  Text="{Binding OutputforXOR}"/>
+		<controls:XNOR_gate Name="xnor" ViewStandard="{Binding ViewSTD}" InputCount="2" InputValues="{Binding InputValues8}"/>
+		<TextBlock HorizontalAlignment="Center"  Text="{Binding OutputforXNOR}"/>
+	</WrapPanel>
+</Window>

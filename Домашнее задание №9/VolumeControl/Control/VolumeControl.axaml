@@ -9,21 +9,35 @@
 		<!-- Set Defaults -->
 		<Setter Property="Template">
 			<ControlTemplate>
-				<Border BorderBrush="Black" Width="500" BorderThickness="5" CornerRadius="5" Name="PART_border">
+				<Border BorderBrush="Black" Width="500"  BorderThickness="5" CornerRadius="5" Name="PART_border">
 					<Grid Background="Transparent"
-						  ColumnDefinitions="1*,4*" 
-						  Width="500" Height="100"
+						  RowDefinitions="4*,1*"
+						  ColumnDefinitions=".5*,4*" 
+						  Width="400" Height="400"
 						  Name="PART_Grid">
-						<Button CornerRadius="0" Background="Transparent" Command="{TemplateBinding FolderButton}" CommandParameter="{TemplateBinding FolderButtonParameter}">
+						<Button Grid.Column="0" Grid.Row="1" CornerRadius="0" Background="Transparent" Command="{TemplateBinding FolderButton}" CommandParameter="{TemplateBinding FolderButtonParameter}">
 							<Image Width="90" Source="{TemplateBinding ImageSource}"/>
 						</Button>
-						<Slider Grid.Column="1" Width="300" VerticalAlignment="Center"
-								Name="PART_Slider"
+						<Slider Grid.Row="1" 
+								Grid.Column="1" Width="300" VerticalAlignment="Center"
+								Name="PART_SliderRIGHT"
 								Background="Black" 
 								TickFrequency="1"
 								IsSnapToTickEnabled="True"
 								TickPlacement="TopLeft"
 								Minimum="{TemplateBinding SliderMin}" 
+								Maximum="{TemplateBinding SliderMax}"
+								Value="{TemplateBinding SliderValue}"/>
+						<Slider Grid.Row="0" Grid.Column="0" Height="300" 
+								Padding="0,10,15,0"
+								Orientation="Vertical"
+								VerticalAlignment="Top"
+								Name="PART_SliderUP"
+								Background="Black"
+								TickFrequency="1"
+								IsSnapToTickEnabled="True"
+								TickPlacement="TopLeft"
+								Minimum="{TemplateBinding SliderMin}"
 								Maximum="{TemplateBinding SliderMax}"
 								Value="{TemplateBinding SliderValue}"/>
 					</Grid>
